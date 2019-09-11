@@ -61,7 +61,7 @@ class PostController
                 if($start != 0 && $finish - $start >= 6 && $rest != 1) {
                     $err = "休憩1ｈ必須";
                 }
-            }
+            } 
             
             $action = new Post;
             $data = $action->store($user_date_id, $user_id, $date_id, $start, $finish, $rest, $kei, $note, $edit_date, $create_date, $err);

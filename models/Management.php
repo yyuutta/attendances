@@ -358,5 +358,5 @@ function inform_insert($comment, $created_at) {
         }
         print $this->status;
     }
-
+    
 }
