@@ -36,6 +36,7 @@ class ManagementController
         //全ユーザー取得
         $action = new Management;
         $users = $action->user_get();
+        
         // 日別の人数と時間を取得
         $action = new Management;
         $counts = $action->count();
@@ -76,6 +77,7 @@ class ManagementController
         //全ユーザー取得
         $action = new Management;
         $users = $action->user_get();
+        
         //表示したいユーザーのみ取得
         $getid = $_GET['id'];
         $action = new Management;
@@ -88,12 +90,18 @@ class ManagementController
             out => '退社',
         );
         
+        $test = array(
+            'notClear' => '否',
+            'Clear' => '合',
+        );
+        
         $tag = "";
         if ($user['id'] == $_SESSION["user_id"]) {
             $tag = "<font color='#00F'>* </font>";
         }
         
         $this->view->assign("tag", $tag);
+        $this->view->assign("test", $test);
         $this->view->assign("dates", $dates);
         $this->view->assign("users", $users);
         $this->view->assign("user", $user);
@@ -122,9 +130,14 @@ class ManagementController
             $leaving = "";
         }
         $edit_date = date("Y/m/d H:i:s");
-
+        
+        // 入社日と退社日、テスト合否項目を追加
+        $indate = $_POST['indate'];
+        $outdate = $_POST['outdate'];
+        $test = $_POST['test'];
+        
         $action = new Management();
-        $user = $action->user_update($id, $mail, $auth, $memo, $leaving, $edit_date);
+        $user = $action->user_update($id, $mail, $auth, $memo, $leaving, $edit_date, $indate, $outdate, $test);
         
         $action = new ManagementController();
         $transfer  = $action->userAction();
