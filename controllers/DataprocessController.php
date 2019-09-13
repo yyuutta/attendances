@@ -27,11 +27,17 @@ class DataprocessController
         $this->view->compile_dir = "../views/templates_c";
     }
     
-    public function indexAction() //取得ボタン押下
+    public function indexAction() // ダウンロード
     {
-        // ログインしているか確認
+        // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
+        $loginUser_auth = $login_check['auth'];
+
+        // 持っている権限で開けるページなのか確認
+        $A = master;
+        $action = new Authority();
+        $confirm = $action->auth_ch($A, $loginUser_auth);
         
         // 全データを取得
         $action = new Dataprocess();

@@ -29,13 +29,18 @@ class ConnectController
     
     public function indexAction() // 何もアクション指定しなければ、ここに来る！
     {
-        // ログインしているか確認
+        // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
         $loginUser_auth = $login_check['auth'];
         
+        // 持っている権限で開けるページなのか確認
+        $A = staff;
+        $action = new Authority();
+        $confirm = $action->auth_ch($A, $loginUser_auth);
+        
         $getid = $_SESSION["user_id"];
-
+        
         // 取得する年月を取得
         $action = new Calendar();
         $dates = $action->get_dates();
@@ -68,9 +73,9 @@ class ConnectController
         $this->view->display("posts/show.tpl");
     }
     
-    public function createAction()
+    public function createAction() // ユーザー作成
     {
-        // ログイン確認なしでOK
+        // ユーザー確認はなし
 
         // ユーザー作成処理
         $action = new Connect();
@@ -83,9 +88,9 @@ class ConnectController
         $this->view->display("connect/register.tpl");
     }
     
-    public function loginAction()
+    public function loginAction() // ログイン
     {
-        // ログイン確認なしでOK
+        // ユーザー確認はなし
  
         // ログイン
         $action = new Connect();
@@ -99,19 +104,20 @@ class ConnectController
         }
     }
     
-    public function registerAction()
+    public function registerAction() // ユーザー登録
     {
-        // ログイン確認なしでOK
+        // ユーザー確認はなし
         
         $this->view->assign("status", $this->status);
         $this->view->display("connect/register.tpl");
     }
     
-    public function logoutAction()
+    public function logoutAction() // ログアウト
     {
-        // ログインしているか確認
+        // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
+        $loginUser_auth = $login_check['auth'];
         
         unset($_SESSION["user"]);
         unset($_SESSION["user_id"]);

@@ -22,7 +22,7 @@
     <font size="4" color="red">{$status|escape}</font>
     <br>
         <form name="insert" action="" method="post">
-            <table border="0" width="500" cellspacing="0" cellpadding="5">
+            <table border="0" width="500" cellspacing="0" cellpadding="10">
                 <!--username--> 
                 <tr>
                     <td align="left" nowrap>username</td>

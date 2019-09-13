@@ -28,12 +28,17 @@ class CalendarController
         $this->view->compile_dir = "../views/templates_c";
     }
     
+    // 用途不詳のため、一旦閉鎖
+    /*
+     * 
     public function indexAction()
     {
-        // ログインしているか確認
+        // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
         $loginUser_auth = $login_check['auth'];
+        
+        
         
         if (!isset($_SESSION["user"])) {
             $this->view->assign("status", "");
@@ -42,8 +47,10 @@ class CalendarController
             $this->view->assign("loginUser_auth", $loginUser_auth);
             $this->view->assign("user_name", $_SESSION["user"]);
             $this->view->assign("status", "");
-            $this->view->display("posts/show.tpl");   
+            //$this->view->display("posts/show.tpl");   
         }
     }
+    * 
+    */
 
 }

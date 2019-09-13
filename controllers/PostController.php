@@ -18,7 +18,7 @@ class PostController
     private $view;
     private $status;
     private $user_name;
-
+    
     public function __construct()
     {
         // Smartyのインスタンスを生成
@@ -29,17 +29,23 @@ class PostController
         $this->view->compile_dir = "../views/templates_c";
     }
     
-    public function indexAction() //取得ボタン押下
+    public function indexAction() // ユーザーのシフト入力月を取得
     {
         //日付を選択→取得された月のデータ一覧を取得　select
         // ConnectControllerのindexActionにて処理
     }
     
-    public function storeAction() //更新ボタン押下
+    public function storeAction() // ユーザーのシフト登録
     {
-        // ログインしているか確認
+        // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
+        $loginUser_auth = $login_check['auth'];
+        
+        // 持っている権限で開けるページなのか確認
+        $A = staff;
+        $action = new Authority();
+        $confirm = $action->auth_ch($A, $loginUser_auth);
         
         //データ更新or作成
         for($i = 0; $i < count($_POST['date_name']); $i++){

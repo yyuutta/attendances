@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-09-05 14:20:34
+/* Smarty version 3.1.34-dev-7, created on 2019-09-13 17:35:00
   from 'C:\xampp\htdocs\attendance\views\templates\connect\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5d709b220a6628_60768383',
+  'unifunc' => 'content_5d7b54b441b377_17308470',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '97ecc9a9c767a2a65933813b03140daa993b9cf4' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\connect\\index.tpl',
-      1 => 1567660820,
+      1 => 1568363698,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5d709b220a6628_60768383 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5d7b54b441b377_17308470 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -45,7 +45,7 @@ function content_5d709b220a6628_60768383 (Smarty_Internal_Template $_smarty_tpl)
         <font size="4" color="red"><?php echo $_smarty_tpl->tpl_vars['status']->value;?>
 </font>
         <form name="login" action="" method="post">
-            <table border="0" width="300" cellspacing="0" cellpadding="5">
+            <table border="0" width="300" cellspacing="0" cellpadding="10">
                 <tr>
                     <td>username</td>
                     <td><input type="text" name="username" value=""></td>

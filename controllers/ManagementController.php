@@ -27,12 +27,17 @@ class ManagementController
         $this->view->compile_dir = "../views/templates_c";
     }
     
-    public function indexAction()
+    public function indexAction() // 管理ページTOPへ(カレンダー)
     {
-        // ログインしているか確認
+        // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
         $loginUser_auth = $login_check['auth'];
+        
+        // 持っている権限で開けるページなのか確認
+        $A = admin;
+        $action = new Authority();
+        $confirm = $action->auth_ch($A, $loginUser_auth);
         
         //全ユーザー取得
         $action = new Management;
@@ -66,12 +71,17 @@ class ManagementController
         $this->view->assign("user_name", $_SESSION["user"]);
         $this->view->display("managements/index.tpl");
     }
-    public function userAction()
+    public function userAction() // ユーザー管理ページへ
     {
-        // ログインしているか確認
+        // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
         $loginUser_auth = $login_check['auth'];
+        
+        // 持っている権限で開けるページなのか確認
+        $A = admin;
+        $action = new Authority();
+        $confirm = $action->auth_ch($A, $loginUser_auth);
         
         // 取得する年月を取得 ヘッダー部分のリンク用に使用　※管理ページに飛ぶにはyearが必要
         $action = new Calendar();
@@ -85,6 +95,10 @@ class ManagementController
         $getid = $_GET['id'];
         $action = new Management;
         $user = $action->onlyuser_get($getid);
+        
+        // マスター以外がマスターデータを見るのはNG
+        
+        
         
         $auth = array(
             master => 'マスター',
@@ -128,11 +142,17 @@ class ManagementController
         $this->view->display("managements/user_index.tpl");
     }
     
-    public function updateAction()
+    public function updateAction() // ユーザー情報を更新
     {
-        // ログインしているか確認
+        // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
+        $loginUser_auth = $login_check['auth'];
+
+        // 持っている権限で開けるページなのか確認
+        $A = master;
+        $action = new Authority();
+        $confirm = $action->auth_ch($A, $loginUser_auth);
         
         $id = (int)$_POST['id'];
         $mail = $_POST['mail'];
@@ -161,12 +181,17 @@ class ManagementController
         $transfer  = $action->userAction();
     }
     
-    public function monthlydateAction()
+    public function monthlydateAction() // 日別の管理ページへ
     {
-        // ログインしているか確認
+        // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
         $loginUser_auth = $login_check['auth'];
+
+        // 持っている権限で開けるページなのか確認
+        $A = admin;
+        $action = new Authority();
+        $confirm = $action->auth_ch($A, $loginUser_auth);
         
         // 取得する年月を取得
         $action = new Calendar();
@@ -202,11 +227,18 @@ class ManagementController
         $this->view->display("managements/date.tpl");
     }
     
-    public function note_upAction()
+    public function note_upAction() // 日別の管理ページ内のメモ更新
     {
-        // ログインしているか確認
+        // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
+        $loginUser_auth = $login_check['auth'];
+        
+        // 持っている権限で開けるページなのか確認
+        $A = admin;
+        $action = new Authority();
+        $confirm = $action->auth_ch($A, $loginUser_auth);
+        
         
         for($i = 0; $i < count($_POST['user_date_id']); $i++){
             $note = $_POST['note'][$i];
@@ -220,12 +252,17 @@ class ManagementController
         $transfer  = $action->monthlydateAction();
     }
     
-    public function errorAction()
+    public function errorAction() // エラーデータ表示ページへ
     {
-        // ログインしているか確認
+        // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
         $loginUser_auth = $login_check['auth'];
+
+        // 持っている権限で開けるページなのか確認
+        $A = master;
+        $action = new Authority();
+        $confirm = $action->auth_ch($A, $loginUser_auth);
         
         $action = new Management();
         $err_get = $action->error_get();
@@ -248,11 +285,17 @@ class ManagementController
         $this->view->display("err/index.tpl");
     }
     
-    public function err_updateAction()
+    public function err_updateAction() // エラーデータの更新
     {
-        // ログインしているか確認
+        // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
+        $loginUser_auth = $login_check['auth'];
+        
+        // 持っている権限で開けるページなのか確認
+        $A = master;
+        $action = new Authority();
+        $confirm = $action->auth_ch($A, $loginUser_auth);
         
         $user_date_id = $_POST['user_date_id'];
         $start = (FLOAT)$_POST['start'];
@@ -277,12 +320,17 @@ class ManagementController
         $transfer  = $action->errorAction();
     }
  
-    public function mailAction()
+    public function mailAction() // メールページへ
     {
-        // ログインしているか確認
+        // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
         $loginUser_auth = $login_check['auth'];
+
+        // 持っている権限で開けるページなのか確認
+        $A = master;
+        $action = new Authority();
+        $confirm = $action->auth_ch($A, $loginUser_auth);
         
         // 取得する年月を取得
         $action = new Calendar();
@@ -297,12 +345,17 @@ class ManagementController
         $this->view->display("managements/mail.tpl");
     }
     
-    public function mail_sendAction()
+    public function mail_sendAction() // メール送信
     {
-        // ログインしているか確認
+        // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
         $loginUser_auth = $login_check['auth'];
+    
+        // 持っている権限で開けるページなのか確認
+        $A = master;
+        $action = new Authority();
+        $confirm = $action->auth_ch($A, $loginUser_auth);
         
         mb_language("Japanese");
         mb_internal_encoding("UTF-8");
@@ -330,8 +383,18 @@ class ManagementController
         $this->view->display("managements/mail.tpl");
     }
     
-    public function informAction()
+    public function informAction() // コメントの記入 postページTOPに表示
     {
+        // ユーザー確認
+        $action = new Authority();
+        $login_check = $action->login_check();
+        $loginUser_auth = $login_check['auth'];
+        
+        // 持っている権限で開けるページなのか確認
+        $A = master;
+        $action = new Authority();
+        $confirm = $action->auth_ch($A, $loginUser_auth);
+        
         $comment = $_POST['comment'];
         $created_at = date("Y/m/d H:i:s");
         

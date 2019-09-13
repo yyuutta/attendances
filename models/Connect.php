@@ -40,7 +40,7 @@ class Connect {
     function login($POST) {  
         
         //受け取った値をここで格納
-        $username = str_replace(array(" ", "　"), "", $_POST['username']);
+        $username = $_POST['username'];
         $password = str_replace(array(" ", "　"), "", $_POST['password']);
         
         function out_get($conf) {
@@ -83,7 +83,7 @@ class Connect {
     
     function user_create($POST) { 
         //受け取った値をここで格納
-        $username = str_replace(array(" ", "　"), "", $_POST['username']);
+        $username = $_POST['username'];
         $password = str_replace(array(" ", "　"), "", $_POST['password']);
         $mail = str_replace(array(" ", "　"), "", $_POST['mail']);
 
@@ -160,7 +160,7 @@ class Connect {
             $stmh->bindParam(':create_date',$create_date,PDO::PARAM_STR);
             $stmh->execute();
             $this->pdo->commit();
-            $this->status = "ユーザー【" . $username . "】-" . $stmh->rowCount() . "件登録しました。<br>"; 
+            $this->status = "ユーザー【" . $username . "】-" . $stmh->rowCount() . "件登録しました。"; 
         } catch (PDOException $Exception) {
             $this->pdo->rollBack();
             $this->status = "エラー:" . $Exception->getMessage();
