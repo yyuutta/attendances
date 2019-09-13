@@ -1,4 +1,5 @@
 <ul class="media-list">
+{if $loginUser_auth < 1}
     <p class="show-button"><b>■マスター</b></p>
     <div class="hide-area">
         {foreach from=$users key=$key item=$value}
@@ -8,15 +9,17 @@
                 id:{$value['id']}
             </div>
             <div class="media-body">
-                <p><a href="index.php?action=user&eventId=management&id={$value['id']}">{if $user_name == $value['username']}<font color='#00F'>* </font>{/if}{$value['username']|escape}</a></p>
+                <p><a href="index.php?action=user&eventId=management&id={$value['id']}">
+                    {if $user_name == $value['username']}<font color='#00F'>* </font>{/if}{$value['username']|escape}
+                    {if $value['test'] == "notClear"}<font color='red'>(試)</font>{/if}
+                </a></p>
             </div>
         </li>
         {/if}
         {/foreach}
     </div>
-    
     <br>
-    
+{/if}
     <p class="show-button"><b>■管理者</b></p>
     <div class="hide-area">
         {foreach from=$users key=$key item=$value}
@@ -26,7 +29,10 @@
                 id:{$value['id']}
             </div>
             <div class="media-body">
-                <p><a href="index.php?action=user&eventId=management&id={$value['id']}">{if $user_name == $value['username']}<font color='#00F'>* </font>{/if}{$value['username']|escape}</a></p> 
+                <p><a href="index.php?action=user&eventId=management&id={$value['id']}">
+                    {if $user_name == $value['username']}<font color='#00F'>* </font>{/if}{$value['username']|escape}
+                    {if $value['test'] == "notClear"}<font color='red'>(試)</font>{/if}
+                </a></p> 
             </div>
         </li>
         {/if}
@@ -44,7 +50,10 @@
                 id:{$value['id']}
             </div>
             <div class="media-body">
-                <p><a href="index.php?action=user&eventId=management&id={$value['id']}">{if $user_name == $value['username']}<font color='#00F'>* </font>{/if}{$value['username']|escape}</a></p>
+                <p><a href="index.php?action=user&eventId=management&id={$value['id']}">
+                    {if $user_name == $value['username']}<font color='#00F'>* </font>{/if}{$value['username']|escape}
+                    {if $value['test'] == "notClear"}<font color='red'>(試)</font>{/if}
+                </a></p>
             </div>
         </li>
         {/if}
@@ -62,7 +71,10 @@
                 id:{$value['id']}
             </div>
             <div class="media-body">
-                <p><a href="index.php?action=user&eventId=management&id={$value['id']}">{if $user_name == $value['username']}<font color='#00F'>* </font>{/if}{$value['username']|escape}</a></p>
+                <p><a href="index.php?action=user&eventId=management&id={$value['id']}">
+                    {if $user_name == $value['username']}<font color='#00F'>* </font>{/if}{$value['username']|escape}
+                    {if $value['test'] == "notClear"}<font color='red'>(試)</font>{/if}
+                </a></p>
             </div>
         </li>
         {/if}

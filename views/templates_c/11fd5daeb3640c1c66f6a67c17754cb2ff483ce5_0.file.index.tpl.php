@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-09-10 13:48:56
+/* Smarty version 3.1.34-dev-7, created on 2019-09-12 18:20:55
   from 'C:\xampp\htdocs\attendance\views\templates\managements\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5d772b38e19ab9_48864185',
+  'unifunc' => 'content_5d7a0df7700fc6_60741388',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '11fd5daeb3640c1c66f6a67c17754cb2ff483ce5' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\managements\\index.tpl',
-      1 => 1568090901,
+      1 => 1568280048,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./years.tpl' => 1,
   ),
 ),false)) {
-function content_5d772b38e19ab9_48864185 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5d7a0df7700fc6_60741388 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 <?php $_smarty_tpl->_subTemplateRender("file:../layouts/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -38,14 +38,16 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
 <li class="media">
     <div class="col-md-3">
         <div class="media-left">
-            <a href="index.php?action=index&eventId=dataprocess"><h4><B>DOWNLOAD</B></h4></a>
-            <a href="index.php?action=mail&eventId=management"><h4><B>MAIL</B></h4></a>
-            <a href="index.php?action=error&eventId=management"><h4><B>ERROR</B></h4></a>
-            <BR>
-            <?php $_smarty_tpl->_subTemplateRender("file:./comment.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+            <?php if ($_smarty_tpl->tpl_vars['loginUser_auth']->value < 1) {?>
+                <a href="index.php?action=index&eventId=dataprocess"><h4><B>DOWNLOAD</B></h4></a>
+                <a href="index.php?action=mail&eventId=management"><h4><B>MAIL</B></h4></a>
+                <a href="index.php?action=error&eventId=management"><h4><B>ERROR</B></h4></a>
+                <BR>
+                <?php $_smarty_tpl->_subTemplateRender("file:./comment.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-            <BR>
-            <BR>
+                <BR>
+                <BR>
+            <?php }?>
             <?php $_smarty_tpl->_subTemplateRender("file:./users.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
         </div>
@@ -107,7 +109,7 @@ $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->t
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_vars['val']->value) {
 ?>
-                                            <?php if ($_smarty_tpl->tpl_vars['val']->value['date_id'] == (($_smarty_tpl->tpl_vars['dates']->value['year']).((isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null))).($_smarty_tpl->tpl_vars['value']->value['day'])) {?>
+                                            <?php if ($_smarty_tpl->tpl_vars['val']->value['date_id'] == (((($_smarty_tpl->tpl_vars['dates']->value['year']).("/")).((isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null))).("/")).($_smarty_tpl->tpl_vars['value']->value['day'])) {?>
                                                 <BR><font size="2">人数: <?php echo $_smarty_tpl->tpl_vars['val']->value['user_c'];?>
 </font>
                                                 <BR><font size="2">時間: <?php echo $_smarty_tpl->tpl_vars['val']->value['kei_c'];?>

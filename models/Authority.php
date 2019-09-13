@@ -48,6 +48,10 @@ class Authority {
                     exit;
                 }
             }
+            
+            // 持っている権限で開けるページなのか確認
+            
+            
             return $user;
     }   
 }

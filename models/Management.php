@@ -110,7 +110,7 @@ class Management {
         return $calendar;
     }
     
-    function user_update($id, $mail, $auth, $memo, $leaving, $edit_date) {
+    function user_update($id, $mail, $auth, $memo, $leaving, $edit_date, $indate, $outdate, $test) {
         try {
             $this->pdo->beginTransaction();
 
@@ -122,7 +122,10 @@ class Management {
                         auth = :auth,
                         memo = :memo,
                         leaving = :leaving,
-                        edit_date = :edit_date
+                        edit_date = :edit_date,
+                        indate = :indate,
+                        outdate = :outdate,
+                        test = :test
                     WHERE
                         id = :id
                     ";
@@ -134,6 +137,9 @@ class Management {
             $stmh->bindParam(':memo',$memo,PDO::PARAM_STR);
             $stmh->bindParam(':leaving',$leaving,PDO::PARAM_STR);
             $stmh->bindParam(':edit_date',$edit_date,PDO::PARAM_STR);
+            $stmh->bindParam(':indate',$indate,PDO::PARAM_STR);
+            $stmh->bindParam(':outdate',$outdate,PDO::PARAM_STR);
+            $stmh->bindParam(':test',$test,PDO::PARAM_STR);
             $stmh->execute();
             $this->pdo->commit();
         } catch (PDOException $Exception) {
@@ -358,5 +364,5 @@ function inform_insert($comment, $created_at) {
         }
         print $this->status;
     }
-    
+
 }

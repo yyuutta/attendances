@@ -32,6 +32,7 @@ class ManagementController
         // ログインしているか確認
         $action = new Authority();
         $login_check = $action->login_check();
+        $loginUser_auth = $login_check['auth'];
         
         //全ユーザー取得
         $action = new Management;
@@ -55,6 +56,7 @@ class ManagementController
         $action = new Management;
         $comment = $action->comment_get(); 
         
+        $this->view->assign("loginUser_auth", $loginUser_auth);
         $this->view->assign("comment", $comment);
         $this->view->assign("counts", $counts);
         $this->view->assign("calendar", $calendar);
@@ -69,6 +71,7 @@ class ManagementController
         // ログインしているか確認
         $action = new Authority();
         $login_check = $action->login_check();
+        $loginUser_auth = $login_check['auth'];
         
         // 取得する年月を取得 ヘッダー部分のリンク用に使用　※管理ページに飛ぶにはyearが必要
         $action = new Calendar();
@@ -100,6 +103,21 @@ class ManagementController
             $tag = "<font color='#00F'>* </font>";
         }
         
+        // getユーザーの処理
+        // getユーザーのpostデータを取得(月単位)
+        $yearMonth = $dates['year'] . "/" . $dates['month'];
+        $action = new Post();
+        $row = $action->get_post($yearMonth, $getid);
+        //日付などを取得
+        $action = new Calendar();
+        $calendar = $action->get_calendar($dates['year'], $dates['month'], $row);
+        $options = $action->get_times(); // 時間帯の配列取得
+        $options_rest = $action->get_times_rest(); // 時間帯の配列取得
+        
+        $this->view->assign("loginUser_auth", $loginUser_auth);
+        $this->view->assign("calendar", $calendar);
+        $this->view->assign("options", $options);
+        $this->view->assign("options_rest", $options_rest);
         $this->view->assign("tag", $tag);
         $this->view->assign("test", $test);
         $this->view->assign("dates", $dates);
@@ -148,6 +166,7 @@ class ManagementController
         // ログインしているか確認
         $action = new Authority();
         $login_check = $action->login_check();
+        $loginUser_auth = $login_check['auth'];
         
         // 取得する年月を取得
         $action = new Calendar();
@@ -159,7 +178,7 @@ class ManagementController
         $year = $_GET['year'];
         $month = $_GET['month'];
         $day = $_GET['day'];
-        $date_data = $year . $month . $day;
+        $date_data = $year . "/" . $month . "/" . $day;
         
         // 日付別で対象者を取得
         $action = new Management;
@@ -170,6 +189,7 @@ class ManagementController
         $timestamp = date_create($year . "-" . $month . "-" . $day);
         $week = $weeks[date_format($timestamp, "w")];
         
+        $this->view->assign("loginUser_auth", $loginUser_auth);
         $this->view->assign("count", $count);
         $this->view->assign("year", $year); 
         $this->view->assign("month", $month); 
@@ -205,6 +225,7 @@ class ManagementController
         // ログインしているか確認
         $action = new Authority();
         $login_check = $action->login_check();
+        $loginUser_auth = $login_check['auth'];
         
         $action = new Management();
         $err_get = $action->error_get();
@@ -218,6 +239,7 @@ class ManagementController
         $options = $action->get_times(); // 時間帯の配列取得
         $options_rest = $action->get_times_rest(); // 時間帯の配列取得
         
+        $this->view->assign("loginUser_auth", $loginUser_auth);
         $this->view->assign("options", $options);
         $this->view->assign("options_rest", $options_rest);
         $this->view->assign("err_get", $err_get); 
@@ -260,6 +282,7 @@ class ManagementController
         // ログインしているか確認
         $action = new Authority();
         $login_check = $action->login_check();
+        $loginUser_auth = $login_check['auth'];
         
         // 取得する年月を取得
         $action = new Calendar();
@@ -267,6 +290,7 @@ class ManagementController
         
         $message = "メール送信画面";
         
+        $this->view->assign("loginUser_auth", $loginUser_auth);
         $this->view->assign("message", $message);
         $this->view->assign("dates", $dates); 
         $this->view->assign("user_name", $_SESSION["user"]);
@@ -278,6 +302,7 @@ class ManagementController
         // ログインしているか確認
         $action = new Authority();
         $login_check = $action->login_check();
+        $loginUser_auth = $login_check['auth'];
         
         mb_language("Japanese");
         mb_internal_encoding("UTF-8");
@@ -298,6 +323,7 @@ class ManagementController
         $action = new Calendar();
         $dates = $action->get_dates();
         
+        $this->view->assign("loginUser_auth", $loginUser_auth);
         $this->view->assign("message", $message);
         $this->view->assign("dates", $dates); 
         $this->view->assign("user_name", $_SESSION["user"]);

@@ -9,13 +9,15 @@
 <li class="media">
     <div class="col-md-3">
         <div class="media-left">
-            <a href="index.php?action=index&eventId=dataprocess"><h4><B>DOWNLOAD</B></h4></a>
-            <a href="index.php?action=mail&eventId=management"><h4><B>MAIL</B></h4></a>
-            <a href="index.php?action=error&eventId=management"><h4><B>ERROR</B></h4></a>
-            <BR>
-            {include file="./comment.tpl"}
-            <BR>
-            <BR>
+            {if $loginUser_auth < 1}
+                <a href="index.php?action=index&eventId=dataprocess"><h4><B>DOWNLOAD</B></h4></a>
+                <a href="index.php?action=mail&eventId=management"><h4><B>MAIL</B></h4></a>
+                <a href="index.php?action=error&eventId=management"><h4><B>ERROR</B></h4></a>
+                <BR>
+                {include file="./comment.tpl"}
+                <BR>
+                <BR>
+            {/if}
             {include file="./users.tpl"}
         </div>
     </div>
@@ -48,7 +50,7 @@
                                     <div class="day_height">
                                         <B>{$value['day']}</B>
                                         {foreach from=$counts key=$key item=$val}
-                                            {if $val['date_id'] == $dates['year']|cat:$smarty.section.i.index|cat:$value['day']}
+                                            {if $val['date_id'] == $dates['year']|cat:"/"|cat:$smarty.section.i.index|cat:"/"|cat:$value['day']}
                                                 <BR><font size="2">人数: {$val['user_c']}</font>
                                                 <BR><font size="2">時間: {$val['kei_c']}</font>
                                             {/if}

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-09-10 13:43:43
+/* Smarty version 3.1.34-dev-7, created on 2019-09-12 16:30:37
   from 'C:\xampp\htdocs\attendance\views\templates\posts\show.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5d7729ffa77e90_19029108',
+  'unifunc' => 'content_5d79f41d2544c1_12006358',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'bb78dc65e4a06fd1dfc5ab778105a23fb4a03588' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\posts\\show.tpl',
-      1 => 1568090622,
+      1 => 1568273427,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./show_ch0.tpl' => 1,
   ),
 ),false)) {
-function content_5d7729ffa77e90_19029108 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5d79f41d2544c1_12006358 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 <?php $_smarty_tpl->_subTemplateRender("file:../layouts/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -42,8 +42,13 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
         </div>
         <br>
     <div class="text-header">
-        <?php $_smarty_tpl->_subTemplateRender("file:./show_header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+        <form name="index" action="" method="get">
+            <br>
+            <?php $_smarty_tpl->_subTemplateRender("file:./show_header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
+        </form>
+        <br>
+        <br>
     </div>
     <form name="store" action="" method="post">
         <br>
@@ -102,7 +107,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
                             <?php $_smarty_tpl->_subTemplateRender("file:./show_ch0.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
                         <?php }?>
-                    <input type="hidden" name="date_name[]" value="<?php echo (($_smarty_tpl->tpl_vars['dates']->value['year']).($_smarty_tpl->tpl_vars['dates']->value['month'])).($_smarty_tpl->tpl_vars['value']->value['day']);?>
+                    <input type="hidden" name="date_name[]" value="<?php echo (((($_smarty_tpl->tpl_vars['dates']->value['year']).("/")).($_smarty_tpl->tpl_vars['dates']->value['month'])).("/")).($_smarty_tpl->tpl_vars['value']->value['day']);?>
 ">
                     <?php }?>
                     </tr>

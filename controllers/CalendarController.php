@@ -33,11 +33,13 @@ class CalendarController
         // ログインしているか確認
         $action = new Authority();
         $login_check = $action->login_check();
+        $loginUser_auth = $login_check['auth'];
         
         if (!isset($_SESSION["user"])) {
             $this->view->assign("status", "");
             $this->view->display("connect/index.tpl");
         } else {
+            $this->view->assign("loginUser_auth", $loginUser_auth);
             $this->view->assign("user_name", $_SESSION["user"]);
             $this->view->assign("status", "");
             $this->view->display("posts/show.tpl");   

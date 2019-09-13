@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-09-06 13:57:35
+/* Smarty version 3.1.34-dev-7, created on 2019-09-12 11:15:26
   from 'C:\xampp\htdocs\attendance\views\templates\connect\register.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5d71e73f132e11_74759505',
+  'unifunc' => 'content_5d79aa3e364072_19372597',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ad8179ba78fe1996643dff5046173c2f045e5dba' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\connect\\register.tpl',
-      1 => 1567745852,
+      1 => 1568016424,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5d71e73f132e11_74759505 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5d79aa3e364072_19372597 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>  
 <html lang="ja">
     <head>
@@ -44,7 +44,7 @@ function content_5d71e73f132e11_74759505 (Smarty_Internal_Template $_smarty_tpl)
 	    <font size="5"><b>ADD_NEW_STAFF</b></font><br>
             <hr width="100%">
     </header>
-    <font size="4" color="red"><?php echo $_smarty_tpl->tpl_vars['status']->value;?>
+    <font size="4" color="red"><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['status']->value, ENT_QUOTES, 'UTF-8', true);?>
 </font>
     <br>
         <form name="insert" action="" method="post">

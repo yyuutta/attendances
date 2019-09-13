@@ -41,7 +41,7 @@ class Calendar {
             $com = 0;
             if ($row != 0) {
                 foreach($row as $key => $value){
-                    $flag_date = $year . $month . $i;
+                    $flag_date = $year . "/" . $month . "/" . $i;
                     if ($value['date_id'] == $flag_date) {
                         $calendar[$j]['selected_start'] = $value['start'];
                         $calendar[$j]['selected_finish'] = $value['finish'];

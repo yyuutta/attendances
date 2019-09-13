@@ -11,7 +11,12 @@
         </div>
         <br>
     <div class="text-header">
-        {include file="./show_header.tpl"}
+        <form name="index" action="" method="get">
+            <br>
+            {include file="./show_header.tpl"}
+        </form>
+        <br>
+        <br>
     </div>
     <form name="store" action="" method="post">
         <br>
@@ -56,7 +61,7 @@
                         {else}
                             {include file="./show_ch0.tpl"}
                         {/if}
-                    <input type="hidden" name="date_name[]" value="{$dates['year']|cat:$dates['month']|cat:$value['day']}">
+                    <input type="hidden" name="date_name[]" value="{$dates['year']|cat:"/"|cat:$dates['month']|cat:"/"|cat:$value['day']}">
                     {/if}
                     </tr>
                 {if $value['err'] != "" && $dates['check'] == 1}

@@ -32,6 +32,7 @@ class ConnectController
         // ログインしているか確認
         $action = new Authority();
         $login_check = $action->login_check();
+        $loginUser_auth = $login_check['auth'];
         
         $getid = $_SESSION["user_id"];
 
@@ -39,10 +40,10 @@ class ConnectController
         $action = new Calendar();
         $dates = $action->get_dates();
         // ここでログインユーザーのpostデータを取得(月単位)
-        $yearMonth = $dates['year'] . $dates['month'];
+        $yearMonth = $dates['year'] . "/" . $dates['month'];
         $action = new Post();
         $row = $action->get_post($yearMonth, $getid);
-
+        
         //日付などを取得
         $action = new Calendar();
         $calendar = $action->get_calendar($dates['year'], $dates['month'], $row);
@@ -57,6 +58,7 @@ class ConnectController
             $comment['created_at'] = "";
         }
         
+        $this->view->assign("loginUser_auth", $loginUser_auth);
         $this->view->assign("comment", $comment);
         $this->view->assign("dates", $dates);
         $this->view->assign("options", $options);
