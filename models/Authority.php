@@ -28,7 +28,7 @@ class Authority {
     function login_check()
     {
             // ログインしているかどうか
-            if (!isset($_SESSION["user"])) {
+            if (!isset($_SESSION["app"]) || $_SESSION["app"] != app) {
                 $this->view->assign("status", "");
                 $this->view->display("connect/index.tpl");
                 exit;
@@ -40,10 +40,11 @@ class Authority {
             $action = new Management;
             $user = $action->onlyuser_get($getid);
             if ($user['auth'] == out) {
+                unset($_SESSION["app"]);
                 unset($_SESSION["user"]);
                 unset($_SESSION["user_id"]);
 
-                if (!isset($_SESSION["user"])) {
+                if (!isset($_SESSION["app"])) {
                     header("Location: index.php");
                     exit;
                 }
@@ -55,10 +56,11 @@ class Authority {
     {
             // 持っている権限で開けるページなのか確認
             if ($A < $loginUser_auth) {
+                    unset($_SESSION["app"]);
                     unset($_SESSION["user"]);
                     unset($_SESSION["user_id"]);
 
-                    if (!isset($_SESSION["user"])) {
+                    if (!isset($_SESSION["app"])) {
                         header("Location: index.php");
                         exit;
                     }

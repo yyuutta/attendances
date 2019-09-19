@@ -14,6 +14,8 @@ define("db_host","localhost"); //ホスト名
 define("db_name",""); //データベース名
 define("db_type","mysql"); //データベースの種類
 
+define("app","attendance"); // アプリ名
+
 define("secret","eagle012"); // ユーザー登録時のaccessCode
 
 define("lastday","20"); // ユーザーがシフト入力できる期間の最終日 Calendar.php

@@ -14,11 +14,16 @@
     </div>
     <div class="media-body">
     <div class="col-md-12">
-        <h2>{$year}年{$month}月{$day}日({$week})</h2>
+        <h2><a href="index.php?action=monthlydate&eventId=management&year={$dates['ago_y']}&month={$dates['ago_m']}&day={$dates['ago_d']}">◀ </a>
+            {$year}年{$month}月{$day}日({$week})
+            <a href="index.php?action=monthlydate&eventId=management&year={$dates['later_y']}&month={$dates['later_m']}&day={$dates['later_d']}"> ▶</a>
+        </h2>
+        <BR>
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>スタッフ {$count}名</th>
+                    <th>エラー</th>
                     <th>出</th>
                     <th>退</th>
                     <th>休</th>
@@ -31,6 +36,7 @@
                     {foreach from=$date_users key=$key item=$value}
                     <tr>
                         <td>id:{$value['id']} <a href="index.php?action=user&eventId=management&id={$value['id']}">{if $user_name == $value['username']}<font color='#00F'>* </font>{/if}{$value['username']}</a></td>
+                        <td>{$value['err']}</td>
                         <td>{$value['start']}</td>
                         <td>{$value['finish']}</td>
                         <td>{$value['rest']}</td>

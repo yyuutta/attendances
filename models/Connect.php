@@ -65,6 +65,7 @@ class Connect {
                         out_get($conf);
                         //if (password_verify($password, $row['password'])) {
                         if (crypt($password, $row['password']) == $row['password']) {
+                            $_SESSION["app"] = app;
                             $_SESSION["user"] = $row['username'];
                             $_SESSION["user_id"] = $row['id'];
                             $this->status = 1;

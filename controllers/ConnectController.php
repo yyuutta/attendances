@@ -119,10 +119,11 @@ class ConnectController
         $login_check = $action->login_check();
         $loginUser_auth = $login_check['auth'];
         
+        unset($_SESSION["app"]);
         unset($_SESSION["user"]);
         unset($_SESSION["user_id"]);
         
-        if (!isset($_SESSION["user"])) {
+        if (!isset($_SESSION["app"])) {
             header("Location: index.php");
         }
     }

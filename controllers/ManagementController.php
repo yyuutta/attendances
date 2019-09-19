@@ -96,10 +96,17 @@ class ManagementController
         $action = new Management;
         $user = $action->onlyuser_get($getid);
         
-        // マスター以外がマスターデータを見るのはNG
-        
-        
-        
+        // マスター以外がマスターデータを見るのはNG→侵入しようとしたらログアウト
+        if ($user['auth'] == master && $loginUser_auth > master) {
+                unset($_SESSION["user"]);
+                unset($_SESSION["user_id"]);
+                
+                if (!isset($_SESSION["user"])) {
+                    header("Location: index.php");
+                    exit;
+                }
+        }
+
         $auth = array(
             master => 'マスター',
             admin => '管理者',

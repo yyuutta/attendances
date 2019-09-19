@@ -118,20 +118,40 @@ class Calendar {
                 $dates['month'] = $_GET['month'];
             }
         }
+        
         // 翌月を取得
         $nextMonth = date('n', strtotime(date('Y-m-01').'+1 month'));
-        // 年をまたぐ際の対応
+        
+        // 年をまたぐ際の対応→翌月が1月なら年を翌年に設定
         if($nextMonth == 1) {
             $nextyear = date('Y') + 1;
         }else{
             $nextyear = date('Y');
         }
         
+        // シフト入力画面で登録できるかできないかの判断
         if($dates['year'] == $nextyear && date('d') <= lastday && $dates['month'] == $nextMonth) {
             $dates['check'] = 1;
         } else {
             $dates['check'] = 0;
         }
+        
+        // 基準日情報の前日と翌日を取得
+        // 基準日
+        if (isset($_GET['year']) && isset($_GET['month']) && isset($_GET['day'])) {
+            $base_date = $_GET['year'] . "-" . $_GET['month'] . "-" . $_GET['day'];
+
+            $dates['ago'] = date("Y-m-d",strtotime($base_date . "-1 day"));
+            $dates['ago_y'] = date("Y",strtotime($dates['ago']));
+            $dates['ago_m'] = date("n",strtotime($dates['ago']));
+            $dates['ago_d'] = date("j",strtotime($dates['ago']));
+
+            $dates['later'] = date("Y-m-d",strtotime($base_date . "+1 day"));
+            $dates['later_y'] =  date("Y",strtotime($dates['later']));
+            $dates['later_m'] =  date("n",strtotime($dates['later']));
+            $dates['later_d'] =  date("j",strtotime($dates['later']));
+        }
+        
         return $dates;
     }
     
