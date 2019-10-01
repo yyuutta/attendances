@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-09-10 13:27:34
+/* Smarty version 3.1.34-dev-7, created on 2019-09-30 17:00:17
   from 'C:\xampp\htdocs\attendance\views\templates\layouts\head.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5d772636d5fc20_10662830',
+  'unifunc' => 'content_5d91b61122f3f9_59136989',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '46930fc926cea6e5db221a06e614c53b27a327cf' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\layouts\\head.tpl',
-      1 => 1568089652,
+      1 => 1569830415,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5d772636d5fc20_10662830 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5d91b61122f3f9_59136989 (Smarty_Internal_Template $_smarty_tpl) {
 ?><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,7 +43,7 @@ function content_5d772636d5fc20_10662830 (Smarty_Internal_Template $_smarty_tpl)
 
     <!-- jsファイルの呼び出し -->
     <?php echo '<script'; ?>
- type="text/javascript" src="ad.js"><?php echo '</script'; ?>
+ type="text/javascript" src="../htdocs/ad.js"><?php echo '</script'; ?>
 >
 </head>
 <?php }
