@@ -98,6 +98,7 @@ class ManagementController
         
         // マスター以外がマスターデータを見るのはNG→侵入しようとしたらログアウト
         if ($user['auth'] == master && $loginUser_auth > master) {
+                unset($_SESSION["app"]);
                 unset($_SESSION["user"]);
                 unset($_SESSION["user_id"]);
                 
