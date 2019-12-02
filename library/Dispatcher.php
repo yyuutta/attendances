@@ -1,5 +1,5 @@
 <?php
-require_once("../models/Connect.php"); //DBに接続する為
+require_once(dirname(__FILE__) . "/../models/Connect.php"); //DBに接続する為
 
 // 各コントローラーに振り分けていく
 class Dispatcher
@@ -17,12 +17,12 @@ class Dispatcher
                     $eventId = 'connect';
                     $action = 'index';
             }
-
+        
         //最初の文字がアルファベットなら大文字→コントローラークラス名格納
         $className = ucfirst(strtolower($eventId)) . 'Controller';
 
         // クラスファイル読込
-        require_once('../controllers/' . $className . '.php');
+        require_once(dirname(__FILE__) . '/../controllers/' . $className . '.php');
 
         // クラスインスタンス生成
         $controllerInstance = new $className();

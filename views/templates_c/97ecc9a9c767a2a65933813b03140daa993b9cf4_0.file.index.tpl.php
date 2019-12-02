@@ -1,26 +1,27 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-09-13 17:35:00
+/* Smarty version 3.1.34-dev-7, created on 2019-11-29 19:10:41
   from 'C:\xampp\htdocs\attendance\views\templates\connect\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5d7b54b441b377_17308470',
+  'unifunc' => 'content_5de0eea15e3d48_34105167',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '97ecc9a9c767a2a65933813b03140daa993b9cf4' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\connect\\index.tpl',
-      1 => 1568363698,
+      1 => 1575022238,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:../layouts/head.tpl' => 1,
   ),
 ),false)) {
-function content_5d7b54b441b377_17308470 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5de0eea15e3d48_34105167 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -39,16 +40,20 @@ function content_5d7b54b441b377_17308470 (Smarty_Internal_Template $_smarty_tpl)
         <?php echo '</script'; ?>
 >
     </head>
+    <?php $_smarty_tpl->_subTemplateRender("file:../layouts/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
     <body>
+    <div class="container">
         <font size="5"><b>LOGIN</b></font><br>
         <hr width="100%">
         <font size="4" color="red"><?php echo $_smarty_tpl->tpl_vars['status']->value;?>
 </font>
         <form name="login" action="" method="post">
-            <table border="0" width="300" cellspacing="0" cellpadding="10">
+
+            <table border="0" width="350" cellspacing="0" cellpadding="10">
                 <tr>
-                    <td>username</td>
-                    <td><input type="text" name="username" value=""></td>
+                    <td style="padding-bottom:20px;">username</td>
+                    <td style="padding-bottom:20px;"><input type="text" name="username" value=""></td>
                 </tr>
                 <tr>
                     <td>password</td>
@@ -58,15 +63,16 @@ function content_5d7b54b441b377_17308470 (Smarty_Internal_Template $_smarty_tpl)
             <br>
             <input type="hidden" name="action" value="login">
             <input type="hidden" name="eventId" value="connect">
-            <input type="submit" value="enter" onclick="return checkFormlogin(); ">
+            <input type="submit" value="enter" onclick="return checkFormlogin();" class="btn btn-primary">
         </form>
         <br>
         <br>
         <form name="register" action="" method="get">
             <input type="hidden" name="action" value="register">
             <input type="hidden" name="eventId" value="connect">
-            <input type="submit" value="add_staff" >
+            <input type="submit" value="add_staff" class="btn btn-primary">
         </form>
+    </div>
     </body>
 </html><?php }
 }

@@ -1,14 +1,14 @@
 <?php
 
-require_once("../models/Connect.php");
-require_once("../models/Calendar.php");
-require_once("../models/Post.php");
-require_once("../models/Management.php");
-require_once("../models/Holiday.php");
-require_once("../models/Authority.php");
+require_once(dirname(__FILE__) . "/../models/Connect.php");
+require_once(dirname(__FILE__) . "/../models/Calendar.php");
+require_once(dirname(__FILE__) . "/../models/Post.php");
+require_once(dirname(__FILE__) . "/../models/Management.php");
+require_once(dirname(__FILE__) . "/../models/Holiday.php");
+require_once(dirname(__FILE__) . "/../models/Authority.php");
 
-require_once("../configs/define.php");
-require_once("../library/smarty/libs/Smarty.class.php");
+require_once(dirname(__FILE__) . "/../configs/define.php");
+require_once(dirname(__FILE__) . "/../library/smarty/libs/Smarty.class.php");
 
 class Authority {
     public $view;
@@ -21,8 +21,8 @@ class Authority {
             $this->view = new Smarty();
             $this->default_modifiers = array('escape:html','nl2br');
             // テンプレートディレクトリとコンパイルディレクトリを読み込む
-            $this->view->template_dir = "../views/templates";
-            $this->view->compile_dir = "../views/templates_c";
+            $this->view->template_dir = dirname(__FILE__) . "/../views/templates";
+            $this->view->compile_dir = dirname(__FILE__) . "/../views/templates_c";
     }
     
     function login_check()

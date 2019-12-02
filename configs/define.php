@@ -1,5 +1,7 @@
 <?php
 
+// 祝日などはHoliday.phpに記載有→更新する事
+
 //DB_connect
 //local
 define("db_user_local","yamamoto"); //ユーザー名
@@ -11,7 +13,7 @@ define("db_type_local","mysql"); //データベースの種類
 define("db_user","root"); //ユーザー名
 define("db_pass","Z3iEPd2g"); //パスワード
 define("db_host","localhost"); //ホスト名
-define("db_name",""); //データベース名
+define("db_name","attendance"); //データベース名
 define("db_type","mysql"); //データベースの種類
 
 define("app","attendance"); // アプリ名
