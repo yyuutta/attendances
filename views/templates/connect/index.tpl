@@ -2,7 +2,7 @@
 <html lang="ja">
     <head>
         <title>LOGIN</title>
-        <meta http-equiv="Content-type" content="text/html;charset=utf-8">
+        <meta http-equiv="content-type" charset="utf-8">
         <script type="text/javascript">
             function checkFormlogin(){
                 if (document.login.username.value === "" || document.login.password.value === ""){
@@ -19,7 +19,7 @@
     <div class="container">
         <font size="5"><b>LOGIN</b></font><br>
         <hr width="100%">
-        <font size="4" color="red">{$status}</font>
+        <font size="4" color="red">{$status|escape}</font>
         <form name="login" action="" method="post">
 
             <table border="0" width="350" cellspacing="0" cellpadding="10">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-11-29 12:16:57
+/* Smarty version 3.1.34-dev-7, created on 2019-12-04 11:31:42
   from 'C:\xampp\htdocs\attendance\views\templates\managements\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5de08da97ad722_46628963',
+  'unifunc' => 'content_5de71a8e0cd495_42797885',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '11fd5daeb3640c1c66f6a67c17754cb2ff483ce5' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\managements\\index.tpl',
-      1 => 1574997410,
+      1 => 1575426700,
       2 => 'file',
     ),
   ),
@@ -21,11 +21,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/head.tpl' => 1,
     'file:../layouts/header.tpl' => 1,
     'file:./comment.tpl' => 1,
-    'file:./users.tpl' => 1,
+    'file:./left_side.tpl' => 1,
     'file:./years.tpl' => 1,
   ),
 ),false)) {
-function content_5de08da97ad722_46628963 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5de71a8e0cd495_42797885 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 <?php $_smarty_tpl->_subTemplateRender("file:../layouts/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -37,19 +37,13 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
 <div class="row">
 <li class="media">
     <div class="col-md-3">
-        <div class="media-left">
-            <?php if ($_smarty_tpl->tpl_vars['loginUser_auth']->value < 1) {?>
-                <a href="index.php?action=index&eventId=dataprocess"><h4><B>DOWNLOAD</B></h4></a>
-                                <a href="index.php?action=error&eventId=management"><h4><B>ERROR</B></h4></a>
-                <BR>
-                <?php $_smarty_tpl->_subTemplateRender("file:./comment.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+        <?php if ($_smarty_tpl->tpl_vars['loginUser_auth']->value < 1) {?>
+            <?php $_smarty_tpl->_subTemplateRender("file:./comment.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-                <BR>
-                <BR>
-            <?php }?>
-            <?php $_smarty_tpl->_subTemplateRender("file:./users.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+            <BR><BR>
+        <?php }?>
+        <?php $_smarty_tpl->_subTemplateRender("file:./left_side.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-        </div>
     </div>
     <div class="media-body">
         <div class="col-md-12">

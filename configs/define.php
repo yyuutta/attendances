@@ -2,6 +2,7 @@
 
 // 祝日などはHoliday.phpに記載有→更新する事
 
+
 //DB_connect
 //local
 define("db_user_local","yamamoto"); //ユーザー名

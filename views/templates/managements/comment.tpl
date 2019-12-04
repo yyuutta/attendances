@@ -2,7 +2,7 @@
     <div class="form-group">
         <label for="name">Comment</label>
         <textarea class="form-control" type="comment" name="comment" rows="7">{$comment['comment']|escape}</textarea>
-        <p>{$comment['created_at']}</p>
+        <p>更新日:{$comment['created_at']}</p>
     </div>
     <input type="hidden" name="action" value="inform">
     <input type="hidden" name="eventId" value="management">

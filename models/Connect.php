@@ -21,12 +21,13 @@ class Connect {
                 $db_pass = db_pass_local; //パスワード
                 $db_host = db_host_local; //ホスト名
                 $db_name = db_name_local; //データベース名
-                $db_type = db_type_local; //データベースの種類 
+                $db_type = db_type_local; //データベースの種類
         }
-
+        
         $dsn = "$db_type:host=$db_host;dbname=$db_name;charset=utf8";
         try {
             $this->pdo = new PDO($dsn,$db_user,$db_pass);
+            $this->pdo->query("set names utf8");  // この記述が必要
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //例外をスロー
             $this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); //PDOクラスのエミュレーションを無効にする
             //print "接続中 <br>";
@@ -87,19 +88,19 @@ class Connect {
         $username = $_POST['username'];
         $password = str_replace(array(" ", "　"), "", $_POST['password']);
         $mail = str_replace(array(" ", "　"), "", $_POST['mail']);
-
+        
         //ユーザーネームが重複しているか、パスが4ケタ以上かつ数字のみ利用か確認
         function check($pass,$count,$password,$user,$mail){
                 if ($count > 0){
                        throw new PDOException("そのユーザーネームは既に使用されています。");
                 }
-                if ($user > 20){
+                if ($user > 40){
                        throw new PDOException("ユーザーネームは20文字以内でお願いします。");
                 }
                 if (!preg_match('/^([a-zA-Z0-9_\.\-]+)\@([a-zA-Z0-9\-]+)\.([a-zA-Z0-9]{2,4})$/', $mail)){
                        throw new PDOException("mailの入力は必須です。");
                 }
-                if ($pass < 6 || $pass > 20) {
+                if ($pass < 6 || $pass > 40) {
                        throw new PDOException("パスワードは6～20桁で入力してください。");    
                 }
                 if (!preg_match("/^[0-9]+$/", $password)) {

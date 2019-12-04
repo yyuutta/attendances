@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-09-13 10:20:45
+/* Smarty version 3.1.34-dev-7, created on 2019-12-04 11:21:01
   from 'C:\xampp\htdocs\attendance\views\templates\managements\user_index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5d7aeeed66ad15_53977934',
+  'unifunc' => 'content_5de7180d9a9cc0_15193996',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '087f8a1f7bfc14f2a74944ce61724b3209456abb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\managements\\user_index.tpl',
-      1 => 1568337644,
+      1 => 1575425855,
       2 => 'file',
     ),
   ),
@@ -20,13 +20,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
     'file:../layouts/head.tpl' => 1,
     'file:../layouts/header.tpl' => 1,
-    'file:./users.tpl' => 1,
+    'file:./left_side.tpl' => 1,
     'file:./user_info_1.tpl' => 1,
     'file:./user_info_2.tpl' => 1,
     'file:./user_show.tpl' => 1,
   ),
 ),false)) {
-function content_5d7aeeed66ad15_53977934 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5de7180d9a9cc0_15193996 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 <?php $_smarty_tpl->_subTemplateRender("file:../layouts/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -38,10 +38,8 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
 <div class="row">
 <li class="media">
     <div class="col-md-2">
-        <div class="media-left">
-            <?php $_smarty_tpl->_subTemplateRender("file:./users.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+        <?php $_smarty_tpl->_subTemplateRender("file:./left_side.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-        </div>
     </div>
     <div class="media-body">
         <div class="row">

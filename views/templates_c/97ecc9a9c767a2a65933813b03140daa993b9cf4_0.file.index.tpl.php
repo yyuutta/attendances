@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-11-29 19:10:41
+/* Smarty version 3.1.34-dev-7, created on 2019-12-02 12:45:47
   from 'C:\xampp\htdocs\attendance\views\templates\connect\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5de0eea15e3d48_34105167',
+  'unifunc' => 'content_5de488eb981430_40604149',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '97ecc9a9c767a2a65933813b03140daa993b9cf4' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\connect\\index.tpl',
-      1 => 1575022238,
+      1 => 1575258289,
       2 => 'file',
     ),
   ),
@@ -21,12 +21,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/head.tpl' => 1,
   ),
 ),false)) {
-function content_5de0eea15e3d48_34105167 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5de488eb981430_40604149 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="ja">
     <head>
         <title>LOGIN</title>
-        <meta http-equiv="Content-type" content="text/html;charset=utf-8">
+        <meta http-equiv="content-type" charset="utf-8">
         <?php echo '<script'; ?>
  type="text/javascript">
             function checkFormlogin(){
@@ -46,7 +46,7 @@ function content_5de0eea15e3d48_34105167 (Smarty_Internal_Template $_smarty_tpl)
     <div class="container">
         <font size="5"><b>LOGIN</b></font><br>
         <hr width="100%">
-        <font size="4" color="red"><?php echo $_smarty_tpl->tpl_vars['status']->value;?>
+        <font size="4" color="red"><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['status']->value, ENT_QUOTES, 'UTF-8', true);?>
 </font>
         <form name="login" action="" method="post">
 

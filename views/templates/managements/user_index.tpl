@@ -8,9 +8,7 @@
 <div class="row">
 <li class="media">
     <div class="col-md-2">
-        <div class="media-left">
-            {include file="./users.tpl"}
-        </div>
+        {include file="./left_side.tpl"}
     </div>
     <div class="media-body">
         <div class="row">

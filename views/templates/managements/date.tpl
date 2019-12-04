@@ -8,9 +8,7 @@
 <div class="row">
 <li class="media">
     <div class="col-md-3">
-        <div class="media-left">
-            {include file="./users.tpl"}
-        </div>
+        {include file="./left_side.tpl"}
     </div>
     <div class="media-body">
     <div class="col-md-12">
@@ -23,7 +21,6 @@
             <thead>
                 <tr>
                     <th>スタッフ {$count}名</th>
-                    <th>エラー</th>
                     <th>出</th>
                     <th>退</th>
                     <th>休</th>
@@ -36,7 +33,6 @@
                     {foreach from=$date_users key=$key item=$value}
                     <tr>
                         <td>id:{$value['id']} <a href="index.php?action=user&eventId=management&id={$value['id']}">{if $user_name == $value['username']}<font color='#00F'>* </font>{/if}{$value['username']}</a></td>
-                        <td>{$value['err']}</td>
                         <td>{$value['start']}</td>
                         <td>{$value['finish']}</td>
                         <td>{$value['rest']}</td>

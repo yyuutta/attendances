@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-09-17 11:16:11
+/* Smarty version 3.1.34-dev-7, created on 2019-12-04 11:21:26
   from 'C:\xampp\htdocs\attendance\views\templates\managements\date.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5d8041eb8804b4_95162125',
+  'unifunc' => 'content_5de71826eb4132_76335018',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '45bfefa559e22cec30db37ab7df84635de64f088' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\managements\\date.tpl',
-      1 => 1568686569,
+      1 => 1575426085,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
     'file:../layouts/head.tpl' => 1,
     'file:../layouts/header.tpl' => 1,
-    'file:./users.tpl' => 1,
+    'file:./left_side.tpl' => 1,
   ),
 ),false)) {
-function content_5d8041eb8804b4_95162125 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5de71826eb4132_76335018 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 <?php $_smarty_tpl->_subTemplateRender("file:../layouts/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -35,10 +35,8 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
 <div class="row">
 <li class="media">
     <div class="col-md-3">
-        <div class="media-left">
-            <?php $_smarty_tpl->_subTemplateRender("file:./users.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+        <?php $_smarty_tpl->_subTemplateRender("file:./left_side.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-        </div>
     </div>
     <div class="media-body">
     <div class="col-md-12">
@@ -62,7 +60,6 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
                 <tr>
                     <th>スタッフ <?php echo $_smarty_tpl->tpl_vars['count']->value;?>
 名</th>
-                    <th>エラー</th>
                     <th>出</th>
                     <th>退</th>
                     <th>休</th>
@@ -83,8 +80,6 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
 "><?php if ($_smarty_tpl->tpl_vars['user_name']->value == $_smarty_tpl->tpl_vars['value']->value['username']) {?><font color='#00F'>* </font><?php }
 echo $_smarty_tpl->tpl_vars['value']->value['username'];?>
 </a></td>
-                        <td><?php echo $_smarty_tpl->tpl_vars['value']->value['err'];?>
-</td>
                         <td><?php echo $_smarty_tpl->tpl_vars['value']->value['start'];?>
 </td>
                         <td><?php echo $_smarty_tpl->tpl_vars['value']->value['finish'];?>

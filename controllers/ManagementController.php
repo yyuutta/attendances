@@ -268,7 +268,7 @@ class ManagementController
         $loginUser_auth = $login_check['auth'];
 
         // 持っている権限で開けるページなのか確認
-        $A = master;
+        $A = admin;
         $action = new Authority();
         $confirm = $action->auth_ch($A, $loginUser_auth);
         

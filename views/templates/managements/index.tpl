@@ -8,18 +8,11 @@
 <div class="row">
 <li class="media">
     <div class="col-md-3">
-        <div class="media-left">
-            {if $loginUser_auth < 1}
-                <a href="index.php?action=index&eventId=dataprocess"><h4><B>DOWNLOAD</B></h4></a>
-                {* <a href="index.php?action=mail&eventId=management"><h4><B>MAIL</B></h4></a> *}
-                <a href="index.php?action=error&eventId=management"><h4><B>ERROR</B></h4></a>
-                <BR>
-                {include file="./comment.tpl"}
-                <BR>
-                <BR>
-            {/if}
-            {include file="./users.tpl"}
-        </div>
+        {if $loginUser_auth < 1}
+            {include file="./comment.tpl"}
+            <BR><BR>
+        {/if}
+        {include file="./left_side.tpl"}
     </div>
     <div class="media-body">
         <div class="col-md-12">
