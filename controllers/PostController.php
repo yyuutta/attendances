@@ -174,17 +174,20 @@ class PostController
             $create_date = date("Y/m/d H:i:s");
             
             // 履歴
-            // $user_date_id, $user_id, $date_id, $create_date はそのまま利用する
-            $past_start = $now_start . " → " . $start;
-            $past_finish = $now_finish . " → " . $finish;
-            $past_rest = $now_rest . " → " . $rest;
-            $past_kei = $now_kei . " → " . $kei;
-            $editor = "id:" . $_SESSION["user_id_at"] . "_" . $_SESSION["user_at"];
-            $flag = $_POST['flag'];
-            $reason = $_POST['reason'];
-            $past_approval = $now_approval . " → " . $approval;
-            $past_note = $now_note . " → " . $note;
-                    
+            $move_history['user_date_id'] = $user_date_id;
+            $move_history['user_id'] = $user_id;
+            $move_history['date_id'] = $date_id;
+            $move_history['past_start'] = $now_start . " → " . $start;
+            $move_history['past_finish'] = $now_finish . " → " . $finish;
+            $move_history['past_rest'] = $now_rest . " → " . $rest;
+            $move_history['past_kei'] = $now_kei . " → " . $kei;
+            $move_history['past_note'] = $now_note . " → " . $note;
+            $move_history['flag'] = $_POST['flag'];
+            $move_history['reason'] = $_POST['reason'];
+            $move_history['editor'] = "id:" . $_SESSION["user_id_at"] . "_" . $_SESSION["user_at"];
+            $move_history['create_date'] = $create_date;
+            $move_history['past_approval'] = $now_approval . " → " . $approval;
+
             // 会社承認項目が登録データと未登録データで異なる場合、本項目のみ更新→履歴を残し終了または次のデータにループ
             if (($approval != $now_approval)) {
 
@@ -194,9 +197,9 @@ class PostController
                     
                 // 履歴
                 $action = new Reshift;
-                $history = $action->store_reshift($user_date_id, $user_id, $date_id, $create_date, $past_start, $past_finish, $past_rest, $past_kei, $editor, $flag, $reason, $past_note, $past_approval);
+                $history = $action->store_reshift($move_history);
             
-            // 前回と同じデータの場合はスルー　※未登録で変更予定データと現在登録されているデータが異なっていたら処理を進める
+            // 前回と同じデータの場合はスルー　※未登録変更予定データ有と現在登録されているデータが異なっていたら処理を進める
             } elseif ($start != $now_start || $finish != $now_finish || $rest != $now_rest || $kei != $now_kei || $note != $now_note) {
                 
                 // 現在登録しているデータが存在し、かつ変更希望データが0、かつ出勤必須日なく、会社承認がなければDBデータを削除
@@ -207,7 +210,7 @@ class PostController
 
                     // 履歴
                     $action = new Reshift;
-                    $history = $action->store_reshift($user_date_id, $user_id, $date_id, $create_date, $past_start, $past_finish, $past_rest, $past_kei, $editor, $flag, $reason, $past_note, $past_approval);
+                    $history = $action->store_reshift($move_history);
 
                 } else {
                     
@@ -228,7 +231,7 @@ class PostController
 
                     // 履歴
                     $action = new Reshift;
-                    $history = $action->store_reshift($user_date_id, $user_id, $date_id, $create_date, $past_start, $past_finish, $past_rest, $past_kei, $editor, $flag, $reason, $past_note, $past_approval);
+                    $history = $action->store_reshift($move_history);
                 }
 
             }
