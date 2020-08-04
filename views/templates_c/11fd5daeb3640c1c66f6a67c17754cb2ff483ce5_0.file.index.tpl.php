@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-12-04 11:31:42
+/* Smarty version 3.1.34-dev-7, created on 2020-08-04 09:49:10
   from 'C:\xampp\htdocs\attendance\views\templates\managements\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5de71a8e0cd495_42797885',
+  'unifunc' => 'content_5f28b08626d863_54540191',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./years.tpl' => 1,
   ),
 ),false)) {
-function content_5de71a8e0cd495_42797885 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f28b08626d863_54540191 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 <?php $_smarty_tpl->_subTemplateRender("file:../layouts/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);

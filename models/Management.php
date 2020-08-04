@@ -14,7 +14,6 @@ class Management {
         $this->holiday = $action->holiday;
     }
     
-    
     function user_get() {
         try {
             $this->pdo->beginTransaction();
@@ -40,6 +39,9 @@ class Management {
 
             //全ユーザーを取得
             $sql = "SELECT * FROM users where id = :id";
+            
+            
+            
             $stmh = $this->pdo->prepare($sql);
             $stmh->bindParam(':id',$id,PDO::PARAM_INT);
             $stmh->execute();
@@ -110,7 +112,7 @@ class Management {
         return $calendar;
     }
     
-    function user_update($id, $mail, $auth, $memo, $leaving, $edit_date, $indate, $outdate, $test) {
+    function user_update($id, $mail, $auth, $memo, $leaving, $edit_date, $indate, $outdate, $test, $department) {
         try {
             $this->pdo->beginTransaction();
 
@@ -125,7 +127,8 @@ class Management {
                         edit_date = :edit_date,
                         indate = :indate,
                         outdate = :outdate,
-                        test = :test
+                        test = :test,
+                        department = :department
                     WHERE
                         id = :id
                     ";
@@ -140,6 +143,7 @@ class Management {
             $stmh->bindParam(':indate',$indate,PDO::PARAM_STR);
             $stmh->bindParam(':outdate',$outdate,PDO::PARAM_STR);
             $stmh->bindParam(':test',$test,PDO::PARAM_STR);
+            $stmh->bindParam(':department',$department,PDO::PARAM_STR);
             $stmh->execute();
             $this->pdo->commit();
         } catch (PDOException $Exception) {
@@ -158,12 +162,10 @@ class Management {
                         *
                     FROM
                         posts inner join users
-                    on
+                    ON
                         posts.user_id = users.id
                     WHERE
                         posts.date_id = :date_id
-                    AND
-                        posts.kei > 0
                     ";
             
             $stmh = $this->pdo->prepare($sql);
@@ -216,8 +218,6 @@ class Management {
                         sum(kei) as kei_c
                     FROM
                         posts
-                    WHERE
-                        kei > 0
                     group by
                         date_id
                     ";
@@ -232,7 +232,7 @@ class Management {
         print $this->status;
         return $counts;
     }
-
+    
     function error_get() {
         try {
             $this->pdo->beginTransaction();
@@ -262,41 +262,6 @@ class Management {
         return $err_get;
     }
 
-        function err_up($user_date_id, $start, $finish, $rest, $kei, $edit_date, $err) {
-        try {
-            $this->pdo->beginTransaction();
-            
-            // エラーデータの修正
-            $sql = "UPDATE
-                        posts
-                    SET
-                        start = :start,
-                        finish = :finish,
-                        rest = :rest,
-                        kei = :kei,
-                        err = :err,
-                        edit_date = :edit_date
-                    WHERE
-                        user_date_id = :user_date_id
-                    ";
-                        
-            $stmh = $this->pdo->prepare($sql);
-            $stmh->bindParam(':start',$start,PDO::PARAM_INT);
-            $stmh->bindParam(':finish',$finish,PDO::PARAM_INT);
-            $stmh->bindParam(':rest',$rest,PDO::PARAM_INT);
-            $stmh->bindParam(':kei',$kei,PDO::PARAM_INT);
-            $stmh->bindParam(':err',$err,PDO::PARAM_STR);
-            $stmh->bindParam(':user_date_id',$user_date_id,PDO::PARAM_STR);
-            $stmh->bindParam(':edit_date',$edit_date,PDO::PARAM_STR);
-            $stmh->execute();
-            $this->pdo->commit();
-        } catch (PDOException $Exception) {
-            $this->pdo->rollBack();
-            $this->status = "エラー:" . $Exception->getMessage() . "<br>";
-        }
-        print $this->status;
-    }
-    
 function inform_insert($comment, $created_at) {
         $id_auto = 0;
         

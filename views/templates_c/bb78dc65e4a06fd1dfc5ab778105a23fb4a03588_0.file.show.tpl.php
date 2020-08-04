@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-11-29 11:48:51
+/* Smarty version 3.1.34-dev-7, created on 2020-08-04 09:49:07
   from 'C:\xampp\htdocs\attendance\views\templates\posts\show.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5de08713b9d7c3_59803578',
+  'unifunc' => 'content_5f28b0837908b8_35265538',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'bb78dc65e4a06fd1dfc5ab778105a23fb4a03588' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\posts\\show.tpl',
-      1 => 1571793706,
+      1 => 1596094010,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./show_ch0.tpl' => 1,
   ),
 ),false)) {
-function content_5de08713b9d7c3_59803578 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f28b0837908b8_35265538 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 <?php $_smarty_tpl->_subTemplateRender("file:../layouts/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -96,7 +96,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
                     <div class="form-group"><td class="text-left col-xs-2">
                         <?php echo $_smarty_tpl->tpl_vars['value']->value['day'];?>
  (<?php echo $_smarty_tpl->tpl_vars['value']->value['week'];?>
-)<?php if ($_smarty_tpl->tpl_vars['value']->value['selected_kei'] > 0) {?>
+)<?php if ($_smarty_tpl->tpl_vars['value']->value['selected_kei'] > 0 && $_smarty_tpl->tpl_vars['value']->value['err'] == '') {?>
                         <font color="#00F">●</font><?php }?><b><font color="#ff0000"><?php echo $_smarty_tpl->tpl_vars['value']->value['err'];?>
 </font></b>
                     </td></div>
@@ -108,6 +108,14 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
 ?>
                         <?php }?>
                     <input type="hidden" name="date_name[]" value="<?php echo (((($_smarty_tpl->tpl_vars['dates']->value['year']).("/")).($_smarty_tpl->tpl_vars['dates']->value['month'])).("/")).($_smarty_tpl->tpl_vars['value']->value['day']);?>
+">
+                    <input type="hidden" name="note[]" value="<?php echo $_smarty_tpl->tpl_vars['value']->value['note'];?>
+">
+                    <input type="hidden" name="approval[]" value="<?php echo $_smarty_tpl->tpl_vars['value']->value['approval'];?>
+">
+                    <input type="hidden" name="warn[]" value="<?php echo $_smarty_tpl->tpl_vars['value']->value['warn'];?>
+">
+                    <input type="hidden" name="week[]" value="<?php echo $_smarty_tpl->tpl_vars['value']->value['week'];?>
 ">
                     <?php }?>
                     </tr>

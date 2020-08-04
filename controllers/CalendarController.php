@@ -7,6 +7,7 @@ require_once(dirname(__FILE__) . "/../models/Management.php");
 require_once(dirname(__FILE__) . "/../models/Holiday.php");
 require_once(dirname(__FILE__) . "/../models/Authority.php");
 require_once(dirname(__FILE__) . "/../models/Dataprocess .php");
+require_once(dirname(__FILE__) . "/../models/Reshift.php");
 
 require_once(dirname(__FILE__) . "/../configs/define.php");
 require_once(dirname(__FILE__) . "/../library/smarty/libs/Smarty.class.php");

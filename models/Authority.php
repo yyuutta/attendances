@@ -28,7 +28,7 @@ class Authority {
     function login_check()
     {
             // ログインしているかどうか
-            if (!isset($_SESSION["app"]) || $_SESSION["app"] != app) {
+            if (!isset($_SESSION["app_at"]) || $_SESSION["app_at"] != app) {
                 $this->view->assign("status", "");
                 $this->view->display("connect/index.tpl");
                 exit;
@@ -36,15 +36,15 @@ class Authority {
             
             // ログイン者の情報を取得→権限レベルを確認
             // 退社ステータスならログアウトさせる
-            $getid = $_SESSION["user_id"];
+            $getid = $_SESSION["user_id_at"];
             $action = new Management;
             $user = $action->onlyuser_get($getid);
             if ($user['auth'] == out) {
-                unset($_SESSION["app"]);
-                unset($_SESSION["user"]);
-                unset($_SESSION["user_id"]);
+                unset($_SESSION["app_at"]);
+                unset($_SESSION["user_at"]);
+                unset($_SESSION["user_id_at"]);
 
-                if (!isset($_SESSION["app"])) {
+                if (!isset($_SESSION["app_at"])) {
                     header("Location: index.php");
                     exit;
                 }
@@ -56,11 +56,11 @@ class Authority {
     {
             // 持っている権限で開けるページなのか確認
             if ($A < $loginUser_auth) {
-                    unset($_SESSION["app"]);
-                    unset($_SESSION["user"]);
-                    unset($_SESSION["user_id"]);
+                    unset($_SESSION["app_at"]);
+                    unset($_SESSION["user_at"]);
+                    unset($_SESSION["user_id_at"]);
 
-                    if (!isset($_SESSION["app"])) {
+                    if (!isset($_SESSION["app_at"])) {
                         header("Location: index.php");
                         exit;
                     }

@@ -21,6 +21,7 @@
             <thead>
                 <tr>
                     <th>スタッフ {$count}名</th>
+                    <th>エラー</th>
                     <th>出</th>
                     <th>退</th>
                     <th>休</th>
@@ -33,6 +34,7 @@
                     {foreach from=$date_users key=$key item=$value}
                     <tr>
                         <td>id:{$value['id']} <a href="index.php?action=user&eventId=management&id={$value['id']}">{if $user_name == $value['username']}<font color='#00F'>* </font>{/if}{$value['username']}</a></td>
+                        <td><font color='#ff0000'>{$value['err']}</font></td>
                         <td>{$value['start']}</td>
                         <td>{$value['finish']}</td>
                         <td>{$value['rest']}</td>

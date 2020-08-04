@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-09-12 16:31:39
+/* Smarty version 3.1.34-dev-7, created on 2020-08-04 09:49:07
   from 'C:\xampp\htdocs\attendance\views\templates\posts\show_header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5d79f45b0871a6_30787302',
+  'unifunc' => 'content_5f28b0837aa1d8_83601162',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5d79f45b0871a6_30787302 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f28b0837aa1d8_83601162 (Smarty_Internal_Template $_smarty_tpl) {
 ?><select name="year" style="width:100px; height:30px;">
     <option <?php if ($_smarty_tpl->tpl_vars['dates']->value['year'] == $_smarty_tpl->tpl_vars['dates']->value['year_ago']) {?>selected<?php }?> value="<?php echo $_smarty_tpl->tpl_vars['dates']->value['year_ago'];?>
 "><?php echo $_smarty_tpl->tpl_vars['dates']->value['year_ago'];?>

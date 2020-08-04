@@ -26,5 +26,16 @@
     <div class="form-group"><td>
         {$value['err']}
     </td></div>
+    <div class="form-group"><td>
+        {$value['note']|escape}
+    </td></div>
+    <div class="form-group"><td>
+        <select name="reason" disabled>
+            {html_options options=$options selected=$value['reason']}
+        </select>
+    </td></div>
+    <div class="form-group"><td>
+        {$value['approval']}
+    </td></div>
     <td></td>
 </tr>

@@ -53,7 +53,7 @@
                     {else}
                     <tr>
                     <div class="form-group"><td class="text-left col-xs-2">
-                        {$value['day']} ({$value['week']}){if $value['selected_kei'] > 0}
+                        {$value['day']} ({$value['week']}){if $value['selected_kei'] > 0 && $value['err'] == ""}
                         <font color="#00F">●</font>{/if}<b><font color="#ff0000">{$value['err']}</font></b>
                     </td></div>
                         {if $dates['check'] == 1}
@@ -62,6 +62,10 @@
                             {include file="./show_ch0.tpl"}
                         {/if}
                     <input type="hidden" name="date_name[]" value="{$dates['year']|cat:"/"|cat:$dates['month']|cat:"/"|cat:$value['day']}">
+                    <input type="hidden" name="note[]" value="{$value['note']}">
+                    <input type="hidden" name="approval[]" value="{$value['approval']}">
+                    <input type="hidden" name="warn[]" value="{$value['warn']}">
+                    <input type="hidden" name="week[]" value="{$value['week']}">
                     {/if}
                     </tr>
                 {if $value['err'] != "" && $dates['check'] == 1}

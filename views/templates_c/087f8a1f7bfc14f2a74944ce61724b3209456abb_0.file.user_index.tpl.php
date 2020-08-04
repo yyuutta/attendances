@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-12-04 11:21:01
+/* Smarty version 3.1.34-dev-7, created on 2020-08-04 12:10:58
   from 'C:\xampp\htdocs\attendance\views\templates\managements\user_index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5de7180d9a9cc0_15193996',
+  'unifunc' => 'content_5f28d1c2512e64_43221871',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '087f8a1f7bfc14f2a74944ce61724b3209456abb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\managements\\user_index.tpl',
-      1 => 1575425855,
+      1 => 1595995732,
       2 => 'file',
     ),
   ),
@@ -26,7 +26,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./user_show.tpl' => 1,
   ),
 ),false)) {
-function content_5de7180d9a9cc0_15193996 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f28d1c2512e64_43221871 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 <?php $_smarty_tpl->_subTemplateRender("file:../layouts/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -43,7 +43,7 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
     </div>
     <div class="media-body">
         <div class="row">
-            <div class="col-md-7 col-md-offset-2">
+            <div class="col-md-9 col-md-offset-2">
                 <div class="text-header">
                     <h2>ID: <?php echo $_smarty_tpl->tpl_vars['user']->value['id'];?>
  / <?php echo $_smarty_tpl->tpl_vars['tag']->value;

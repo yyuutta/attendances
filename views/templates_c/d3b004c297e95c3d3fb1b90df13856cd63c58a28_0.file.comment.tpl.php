@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-12-04 11:33:39
+/* Smarty version 3.1.34-dev-7, created on 2020-08-04 09:49:10
   from 'C:\xampp\htdocs\attendance\views\templates\managements\comment.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5de71b03a9bc50_87057025',
+  'unifunc' => 'content_5f28b08627d4f4_64771099',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5de71b03a9bc50_87057025 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f28b08627d4f4_64771099 (Smarty_Internal_Template $_smarty_tpl) {
 ?><form name="comment" action="" method="post">
     <div class="form-group">
         <label for="name">Comment</label>

@@ -21,10 +21,14 @@ define("app","attendance"); // アプリ名
 
 define("secret","eagle012"); // ユーザー登録時のaccessCode
 
-define("lastday","20"); // ユーザーがシフト入力できる期間の最終日 Calendar.php
+define("lastday","31"); // ユーザーがシフト入力できる期間の最終日 Calendar.php
 
 // 管理権限 ManagementController.php
 define("master","0");
 define("admin","1");
 define("staff","2");
 define("out","3");
+
+// メール用 ManagementController.php
+define("sender_mail","y.yamamoto@eagle-tokyo.co.jp"); // 送信アドレス
+define("bcc_mail","k.ooba@eagle-tokyo.co.jp"); // bcc送信アドレス

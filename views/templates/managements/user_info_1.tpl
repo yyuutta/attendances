@@ -5,6 +5,11 @@
             {html_options options=$auth selected=$user['auth']}
         </select>
         &emsp;&emsp;
+        <label for="name">事業部 </label>
+        <select name="department">
+            {html_options options=$department selected=$user['department']}
+        </select> 
+        &emsp;&emsp;
         <label for="name">テスト合否 </label>
         <select name="test">
             {html_options options=$test selected=$user['test']}

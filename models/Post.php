@@ -12,13 +12,15 @@ class Post {
     
     function get_post($yearMonth, $getid) {  
         
+        $this->status = "";
+        
         //受け取った値をここで格納
         $user_id = $getid;
         $date_id = $yearMonth . "%";
         
         try {
             $this->pdo->beginTransaction();
-
+            
             //ユーザ名が一致するレコードを探す
             //$sql = "SELECT * FROM users WHERE `username` = :username";
             $sql = "SELECT * FROM posts WHERE `user_id` = :user_id AND `date_id` like :date_id";
@@ -40,18 +42,20 @@ class Post {
         return $row;
     }
     
-    function store($user_date_id, $user_id, $date_id, $start, $finish, $rest, $kei, $note, $edit_date, $create_date, $err) {
+    function store($user_date_id, $user_id, $date_id, $start, $finish, $rest, $kei, $note, $edit_date, $create_date, $err, $approval, $week) {
         
-        $id_auto = 0;        
+        $this->status = "";
+        
+        $id_auto = 0;
         
         try {
             $this->pdo->beginTransaction();
            
             // データが存在すれば更新、なければ作成
             $sql =  "INSERT INTO 
-                        posts (id, user_date_id, user_id, date_id, start, finish, rest, kei, note, err, edit_date, create_date)
+                        posts (id, user_date_id, user_id, date_id, start, finish, rest, kei, note, err, edit_date, create_date, approval, week)
                     VALUES 
-                        (:id, :user_date_id, :user_id, :date_id, :start ,:finish, :rest, :kei, :note, :err, :edit_date, :create_date)
+                        (:id, :user_date_id, :user_id, :date_id, :start ,:finish, :rest, :kei, :note, :err, :edit_date, :create_date, :approval, :week)
                     ON DUPLICATE KEY UPDATE
                         `id` = `id`,
                         `user_date_id` = VALUES(`user_date_id`),
@@ -64,7 +68,9 @@ class Post {
                         `note` = VALUES(`note`),
                         `err` = VALUES(`err`),
                         `edit_date` = VALUES(`edit_date`),
-                        `create_date` = `create_date`
+                        `create_date` = `create_date`,
+                        `approval` = VALUES(`approval`),
+                        `week` = VALUES(`week`)
                     ";
 
             $stmh = $this->pdo->prepare($sql);
@@ -80,6 +86,8 @@ class Post {
             $stmh->bindParam(':err',$err,PDO::PARAM_STR);
             $stmh->bindParam(':edit_date',$edit_date,PDO::PARAM_STR);
             $stmh->bindParam(':create_date',$create_date,PDO::PARAM_STR);
+            $stmh->bindParam(':approval',$approval,PDO::PARAM_STR);
+            $stmh->bindParam(':week',$week,PDO::PARAM_STR);
             $stmh->execute();
             $this->pdo->commit();
         } catch (PDOException $Exception) {
@@ -90,7 +98,59 @@ class Post {
         return "";
     }
     
-    
-    
+    function delete($user_date_id) {
+        
+        $this->status = "";
+        
+        try {
+                $this->pdo->beginTransaction();
+
+                // 対象データの削除
+                $sql =  "DELETE FROM
+                            posts
+                        WHERE
+                            `user_date_id` = :user_date_id
+                        ";
+                
+                $stmh = $this->pdo->prepare($sql);
+                $stmh->bindParam(':user_date_id',$user_date_id,PDO::PARAM_STR);
+                $stmh->execute();
+                $this->pdo->commit();
+            } catch (PDOException $Exception) {
+                $this->pdo->rollBack();
+                $this->status = "エラー:" . $Exception->getMessage() . "<br>";
+            }
+            print $this->status;
+            return "";
+        }
+
+    function update($user_date_id, $approval) {
+        
+        $this->status = "";
+        
+        try {
+                $this->pdo->beginTransaction();
+
+                // 対象データの削除
+                $sql =  "UPDATE
+                            posts
+                        SET
+                            `approval` = :approval
+                        WHERE
+                            `user_date_id` = :user_date_id
+                        ";
+                
+                $stmh = $this->pdo->prepare($sql);
+                $stmh->bindParam(':approval',$approval,PDO::PARAM_STR);
+                $stmh->bindParam(':user_date_id',$user_date_id,PDO::PARAM_STR);
+                $stmh->execute();
+                $this->pdo->commit();
+            } catch (PDOException $Exception) {
+                $this->pdo->rollBack();
+                $this->status = "エラー:" . $Exception->getMessage() . "<br>";
+            }
+            print $this->status;
+            return "";
+    }
     
 }

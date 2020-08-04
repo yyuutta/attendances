@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-09-12 17:35:07
+/* Smarty version 3.1.34-dev-7, created on 2020-08-04 12:10:58
   from 'C:\xampp\htdocs\attendance\views\templates\managements\user_info_1.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5d7a033bcdaf44_88829699',
+  'unifunc' => 'content_5f28d1c2532b63_08836500',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '54c0c1f7f5bced4d25254c0a009eea6fc32c5e00' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\managements\\user_info_1.tpl',
-      1 => 1568277306,
+      1 => 1595229502,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5d7a033bcdaf44_88829699 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f28d1c2532b63_08836500 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\attendance\\library\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <form name="user" action="" method="post">
@@ -30,6 +30,12 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\attendanc
             <?php echo smarty_function_html_options(array('options'=>$_smarty_tpl->tpl_vars['auth']->value,'selected'=>$_smarty_tpl->tpl_vars['user']->value['auth']),$_smarty_tpl);?>
 
         </select>
+        &emsp;&emsp;
+        <label for="name">事業部 </label>
+        <select name="department">
+            <?php echo smarty_function_html_options(array('options'=>$_smarty_tpl->tpl_vars['department']->value,'selected'=>$_smarty_tpl->tpl_vars['user']->value['department']),$_smarty_tpl);?>
+
+        </select> 
         &emsp;&emsp;
         <label for="name">テスト合否 </label>
         <select name="test">

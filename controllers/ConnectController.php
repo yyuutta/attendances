@@ -7,6 +7,7 @@ require_once(dirname(__FILE__) . "/../models/Management.php");
 require_once(dirname(__FILE__) . "/../models/Holiday.php");
 require_once(dirname(__FILE__) . "/../models/Authority.php");
 require_once(dirname(__FILE__) . "/../models/Dataprocess.php");
+require_once(dirname(__FILE__) . "/../models/Reshift.php");
 
 require_once(dirname(__FILE__) . "/../configs/define.php");
 require_once(dirname(__FILE__) . "/../library/smarty/libs/Smarty.class.php");
@@ -39,7 +40,7 @@ class ConnectController
         $action = new Authority();
         $confirm = $action->auth_ch($A, $loginUser_auth);
         
-        $getid = $_SESSION["user_id"];
+        $getid = $_SESSION["user_id_at"];
         
         // 取得する年月を取得
         $action = new Calendar();
@@ -69,7 +70,7 @@ class ConnectController
         $this->view->assign("options", $options);
         $this->view->assign("options_rest", $options_rest);
         $this->view->assign("calendar", $calendar);
-        $this->view->assign("user_name", $_SESSION["user"]);
+        $this->view->assign("user_name", $_SESSION["user_at"]);
         $this->view->display("posts/show.tpl");
     }
     
@@ -119,11 +120,11 @@ class ConnectController
         $login_check = $action->login_check();
         $loginUser_auth = $login_check['auth'];
         
-        unset($_SESSION["app"]);
-        unset($_SESSION["user"]);
-        unset($_SESSION["user_id"]);
+        unset($_SESSION["app_at"]);
+        unset($_SESSION["user_at"]);
+        unset($_SESSION["user_id_at"]);
         
-        if (!isset($_SESSION["app"])) {
+        if (!isset($_SESSION["app_at"])) {
             header("Location: index.php");
         }
     }

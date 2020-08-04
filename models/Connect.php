@@ -66,9 +66,9 @@ class Connect {
                         out_get($conf);
                         //if (password_verify($password, $row['password'])) {
                         if (crypt($password, $row['password']) == $row['password']) {
-                            $_SESSION["app"] = app;
-                            $_SESSION["user"] = $row['username'];
-                            $_SESSION["user_id"] = $row['id'];
+                            $_SESSION["app_at"] = app;
+                            $_SESSION["user_at"] = $row['username'];
+                            $_SESSION["user_id_at"] = $row['id'];
                             $this->status = 1;
                         } else {
                             $this->status = "パスワードが違います。";

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-09-25 17:23:44
+/* Smarty version 3.1.34-dev-7, created on 2020-08-03 17:39:31
   from 'C:\xampp\htdocs\attendance\views\templates\layouts\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5d8b2410494e77_79807822',
+  'unifunc' => 'content_5f27cd43e42ff0_78147125',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5d8b2410494e77_79807822 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f27cd43e42ff0_78147125 (Smarty_Internal_Template $_smarty_tpl) {
 ?><header>
     <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">

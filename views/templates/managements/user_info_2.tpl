@@ -8,6 +8,14 @@
         </td>
     </tr>
     <tr>
+        <th>事業部 </th>
+        <td>     
+            <select name="department" disabled>
+            {html_options options=$department selected=$user['department']}
+            </select>
+        </td>
+    </tr>
+    <tr>
         <th>テスト合否 </th>
         <td>     
             <select name="test" disabled>

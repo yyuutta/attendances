@@ -15,3 +15,7 @@
 </td></div>
 <div class="form-group"><td>{$value['selected_kei']}
 </td></div>
+<input type="hidden" name="now_start[]" value="{$value['selected_start']}">
+<input type="hidden" name="now_finish[]" value="{$value['selected_finish']}">
+<input type="hidden" name="now_rest[]" value="{$value['selected_rest']}">
+<input type="hidden" name="now_kei[]" value="{$value['selected_kei']}">

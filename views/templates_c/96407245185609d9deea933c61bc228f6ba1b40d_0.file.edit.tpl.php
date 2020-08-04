@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-12-04 10:53:51
+/* Smarty version 3.1.34-dev-7, created on 2020-08-04 12:08:35
   from 'C:\xampp\htdocs\attendance\views\templates\err\edit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5de711af1f4670_93175478',
+  'unifunc' => 'content_5f28d133321421_17006968',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '96407245185609d9deea933c61bc228f6ba1b40d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\err\\edit.tpl',
-      1 => 1575424361,
+      1 => 1596510513,
       2 => 'file',
     ),
   ),
@@ -20,20 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5de711af1f4670_93175478 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f28d133321421_17006968 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\attendance\\library\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
-<form name="err_data" action="" method="post">
+<form name="errdata" action="" method="post">
         <tr>
             <div class="form-group"><td>
+                <a href="index.php?action=user&eventId=management&id=<?php echo $_smarty_tpl->tpl_vars['value']->value['id'];?>
+">
                 id: <?php echo $_smarty_tpl->tpl_vars['value']->value['id'];?>
  / <?php echo htmlspecialchars($_smarty_tpl->tpl_vars['value']->value['username'], ENT_QUOTES, 'UTF-8', true);?>
 
+                </a>
             </td></div>
             <div class="form-group"><td>
                 <?php echo $_smarty_tpl->tpl_vars['value']->value['date_id'];?>
 
-            </td></div>        
+                (<?php echo $_smarty_tpl->tpl_vars['value']->value['week'];?>
+)
+            </td></div>
             <div class="form-group"><td>
                 <select name="start">
                     <?php echo smarty_function_html_options(array('options'=>$_smarty_tpl->tpl_vars['options']->value,'selected'=>$_smarty_tpl->tpl_vars['value']->value['start']),$_smarty_tpl);?>
@@ -57,16 +62,53 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\attendanc
 
             </td></div>
             <div class="form-group"><td>
-                <?php echo $_smarty_tpl->tpl_vars['value']->value['err'];?>
-
+                <font color="#ff0000"><?php echo $_smarty_tpl->tpl_vars['value']->value['err'];?>
+</font>
             </td></div>
-            <td><input class="btn btn-primary btn-block" type="submit" value="更 新"></td>
+            <div class="form-group"><td>
+                <input class="form-control" name="note" value="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['value']->value['note'], ENT_QUOTES, 'UTF-8', true);?>
+">
+            </td></div>
+            <div class="form-group"><td>
+                <select name="reason">
+                    <?php echo smarty_function_html_options(array('options'=>$_smarty_tpl->tpl_vars['reason']->value,'selected'=>$_smarty_tpl->tpl_vars['reason']->value),$_smarty_tpl);?>
+
+                </select>
+            </td></div>
+            <div class="form-group"><td>
+                <select name="approval">
+                    <?php echo smarty_function_html_options(array('options'=>$_smarty_tpl->tpl_vars['approval']->value,'selected'=>$_smarty_tpl->tpl_vars['value']->value['approval']),$_smarty_tpl);?>
+
+                </select>
+            </td></div>
+            <td><input type="submit" class="btn btn-primary btn-block" value="更 新"></td>
             <input type="hidden" name="user_id" value="<?php echo $_smarty_tpl->tpl_vars['value']->value['id'];?>
+">
+            <input type="hidden" name="date_id" value="<?php echo $_smarty_tpl->tpl_vars['value']->value['date_id'];?>
 ">
             <input type="hidden" name="user_date_id" value="<?php echo $_smarty_tpl->tpl_vars['value']->value['user_date_id'];?>
 ">
+            <input type="hidden" name="now_start" value="<?php echo $_smarty_tpl->tpl_vars['value']->value['start'];?>
+">
+            <input type="hidden" name="now_finish" value="<?php echo $_smarty_tpl->tpl_vars['value']->value['finish'];?>
+">
+            <input type="hidden" name="now_rest" value="<?php echo $_smarty_tpl->tpl_vars['value']->value['rest'];?>
+">
+            <input type="hidden" name="now_kei" value="<?php echo $_smarty_tpl->tpl_vars['value']->value['kei'];?>
+">
+            <input type="hidden" name="now_note" value="<?php echo $_smarty_tpl->tpl_vars['value']->value['note'];?>
+">
+            <input type="hidden" name="now_approval" value="<?php echo $_smarty_tpl->tpl_vars['value']->value['approval'];?>
+">
+            <input type="hidden" name="exist" value="<?php echo $_smarty_tpl->tpl_vars['value']->value['exist'];?>
+">
+            <input type="hidden" name="week" value="<?php echo $_smarty_tpl->tpl_vars['value']->value['week'];?>
+">
+            <input type="hidden" name="warn" value="<?php echo $_smarty_tpl->tpl_vars['value']->value['warn'];?>
+">
         </tr>
-    <input type="hidden" name="action" value="err_update">
-    <input type="hidden" name="eventId" value="management">
+    <input type="hidden" name="action" value="store2">
+    <input type="hidden" name="eventId" value="post">
+    <input type="hidden" name="flag" value="エラー訂正">
 </form><?php }
 }

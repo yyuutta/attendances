@@ -9,6 +9,7 @@ class Calendar {
     }
     
     function get_calendar($year, $month, $row) {
+        
         // 月末日を取得
         $last_day = date('j', mktime(0, 0, 0, $month + 1, 0, $year));
         $calendar = array();
@@ -33,10 +34,25 @@ class Calendar {
                 }
             }
             
+            // エラー表示の時に出勤必須の項目を取得する用
+            $calendar[$j]['flag_date'] = $flag_date;
+            
             // 配列に日付と曜日をセット
             $calendar[$j]['day'] = $i;
             $calendar[$j]['week'] = $youbi[$week];
-
+            
+            // 休み明けは出勤必須
+            $calendar[$j]['warn'] = "";
+            if ($j == 0) { // 前月は取得してない為、1日目のみ、曜日が月曜かつ祝日ではなければ出勤必須
+                if ($calendar[$j]['week'] == "月" && $calendar[$j]['holiday'] == "") {
+                    $calendar[$j]['warn'] = "出勤必須";
+                }
+            } elseif ($j >= 1) { // 2日目以降、前日が日曜または祝日かつ当日が祝日ではない場合は出勤必須
+                $jplus1 = $j - 1;
+                if (($calendar[$jplus1]['week'] == "日" || $calendar[$jplus1]['holiday'] != "") && $calendar[$j]['holiday'] == "") {
+                    $calendar[$j]['warn'] = "出勤必須";
+                }
+            }
             // DB登録されてる日なら、そのデータを参照
             $com = 0;
             if ($row != 0) {
@@ -48,6 +64,9 @@ class Calendar {
                         $calendar[$j]['selected_rest'] = $value['rest'];
                         $calendar[$j]['selected_kei'] = $value['kei'];
                         $calendar[$j]['err'] = $value['err'];
+                        $calendar[$j]['note'] = $value['note'];
+                        $calendar[$j]['approval'] = $value['approval'];
+                        $calendar[$j]['exist'] = "exist";
                         $com = 1;
                     }
                     if ($com != 1) {
@@ -56,6 +75,9 @@ class Calendar {
                         $calendar[$j]['selected_rest'] = 0;
                         $calendar[$j]['selected_kei'] = 0;
                         $calendar[$j]['err'] = "";
+                        $calendar[$j]['note'] = "";
+                        $calendar[$j]['approval'] = "";
+                        $calendar[$j]['exist'] = "";
                     }
                 }
             } else {
@@ -64,7 +86,17 @@ class Calendar {
                 $calendar[$j]['selected_rest'] = 0;
                 $calendar[$j]['selected_kei'] = 0;
                 $calendar[$j]['err'] = "";
+                $calendar[$j]['note'] = "";
+                $calendar[$j]['approval'] = "";
+                $calendar[$j]['exist'] = "";
             }
+            
+            // エラーデータがあるが、会社承認がある場合は、OKと表示
+            if ($calendar[$j]['approval'] == "OK" && $calendar[$j]['err'] != "") {
+                $calendar[$j]['err'] = $calendar[$j]['approval'];
+                $calendar[$j]['warn'] = "";
+            }
+
             $j++;                                                                
         }
         return $calendar;
@@ -74,6 +106,7 @@ class Calendar {
         // ここに日付別に登録されている勤怠時間のデータを配列で入れる
         $options = array(
             '0' => '-',
+            '10.5' => '10.5',
             '11' => '11',
             '11.5' => '11.5',
             '12' => '12',

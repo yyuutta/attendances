@@ -7,6 +7,7 @@ require_once(dirname(__FILE__) . "/../models/Management.php");
 require_once(dirname(__FILE__) . "/../models/Holiday.php");
 require_once(dirname(__FILE__) . "/../models/Authority.php");
 require_once(dirname(__FILE__) . "/../models/Dataprocess.php");
+require_once(dirname(__FILE__) . "/../models/Reshift.php");
 
 require_once(dirname(__FILE__) . "/../configs/define.php");
 require_once(dirname(__FILE__) . "/../library/smarty/libs/Smarty.class.php");
@@ -68,7 +69,7 @@ class ManagementController
         $this->view->assign("weeks", $weeks);
         $this->view->assign("dates", $dates);
         $this->view->assign("users", $users);
-        $this->view->assign("user_name", $_SESSION["user"]);
+        $this->view->assign("user_name", $_SESSION["user_at"]);
         $this->view->display("managements/index.tpl");
     }
     public function userAction() // ユーザー管理ページへ
@@ -91,18 +92,18 @@ class ManagementController
         $action = new Management;
         $users = $action->user_get();
         
-        //表示したいユーザーのみ取得
+        //表示したいユーザーのみ取得 ※同時に履歴も取得しておく
         $getid = $_GET['id'];
         $action = new Management;
         $user = $action->onlyuser_get($getid);
         
         // マスター以外がマスターデータを見るのはNG→侵入しようとしたらログアウト
         if ($user['auth'] == master && $loginUser_auth > master) {
-                unset($_SESSION["app"]);
-                unset($_SESSION["user"]);
-                unset($_SESSION["user_id"]);
+                unset($_SESSION["app_at"]);
+                unset($_SESSION["user_at"]);
+                unset($_SESSION["user_id_at"]);
                 
-                if (!isset($_SESSION["user"])) {
+                if (!isset($_SESSION["user_at"])) {
                     header("Location: index.php");
                     exit;
                 }
@@ -120,33 +121,61 @@ class ManagementController
             'Clear' => '合',
         );
         
+        $department = array(
+            '' => '配属先を選んで下さい',
+            'web' => 'Web事業部',
+            'customer' => 'カスタマー事業部',
+            'merchandise' => '商品管理事業部',
+            'system' => 'システム開発事業部',
+        );
+        
         $tag = "";
-        if ($user['id'] == $_SESSION["user_id"]) {
+        if ($user['id'] == $_SESSION["user_id_at"]) {
             $tag = "<font color='#00F'>* </font>";
         }
         
+        $reason = array(
+            '' => '-----',
+            'staff' => 'スタッフ',
+            'company' => '会社',
+        );
+
+        $approval = array(
+            '' => '-----',
+            'OK' => '会社承認済',
+        );
+                
         // getユーザーの処理
         // getユーザーのpostデータを取得(月単位)
         $yearMonth = $dates['year'] . "/" . $dates['month'];
         $action = new Post();
         $row = $action->get_post($yearMonth, $getid);
+        
         //日付などを取得
         $action = new Calendar();
         $calendar = $action->get_calendar($dates['year'], $dates['month'], $row);
         $options = $action->get_times(); // 時間帯の配列取得
         $options_rest = $action->get_times_rest(); // 時間帯の配列取得
         
+        // getユーザーの履歴データを取得(対象月のみ)
+        $action = new Reshift;
+        $history = $action->get_reshift($yearMonth, $getid);
+        
+        $this->view->assign("approval", $approval);
+        $this->view->assign("history", $history);
         $this->view->assign("loginUser_auth", $loginUser_auth);
         $this->view->assign("calendar", $calendar);
         $this->view->assign("options", $options);
         $this->view->assign("options_rest", $options_rest);
         $this->view->assign("tag", $tag);
+        $this->view->assign("department", $department);
         $this->view->assign("test", $test);
+        $this->view->assign("reason", $reason);
         $this->view->assign("dates", $dates);
         $this->view->assign("users", $users);
         $this->view->assign("user", $user);
         $this->view->assign("auth", $auth);
-        $this->view->assign("user_name", $_SESSION["user"]);
+        $this->view->assign("user_name", $_SESSION["user_at"]);
         $this->view->display("managements/user_index.tpl");
     }
     
@@ -182,11 +211,14 @@ class ManagementController
         $outdate = $_POST['outdate'];
         $test = $_POST['test'];
         
-        $action = new Management();
-        $user = $action->user_update($id, $mail, $auth, $memo, $leaving, $edit_date, $indate, $outdate, $test);
+        // 事業部の登録
+        $department = $_POST['department'];
         
-        $action = new ManagementController();
-        $transfer  = $action->userAction();
+        $action = new Management();
+        $user = $action->user_update($id, $mail, $auth, $memo, $leaving, $edit_date, $indate, $outdate, $test, $department);
+        
+        $uri = $_SERVER['HTTP_REFERER'];
+        header("Location: ".$uri);
     }
     
     public function monthlydateAction() // 日別の管理ページへ
@@ -231,7 +263,7 @@ class ManagementController
         $this->view->assign("date_users", $date_users); 
         $this->view->assign("users", $users); 
         $this->view->assign("dates", $dates); 
-        $this->view->assign("user_name", $_SESSION["user"]);
+        $this->view->assign("user_name", $_SESSION["user_at"]);
         $this->view->display("managements/date.tpl");
     }
     
@@ -256,8 +288,9 @@ class ManagementController
             $action = new Management();
             $user = $action->note_update($note, $user_date_id, $edit_date);
         }
-        $action = new ManagementController();
-        $transfer  = $action->monthlydateAction();
+        
+        $uri = $_SERVER['HTTP_REFERER'];
+        header("Location: ".$uri);
     }
     
     public function errorAction() // エラーデータ表示ページへ
@@ -266,75 +299,79 @@ class ManagementController
         $action = new Authority();
         $login_check = $action->login_check();
         $loginUser_auth = $login_check['auth'];
-
+        
         // 持っている権限で開けるページなのか確認
         $A = admin;
         $action = new Authority();
         $confirm = $action->auth_ch($A, $loginUser_auth);
         
+        // エラーデータの取得
         $action = new Management();
         $err_get = $action->error_get();
-
+        
         // 取得する年月を取得
         $action = new Calendar();
         $dates = $action->get_dates();
-        
+        // 本年度より前後一年間全てのデータを取得
+        $calendar[] = "";
+        $calendar1 = "";
+        $calendar2 = "";
+        $calendar3 = "";
+        for ($i = 1; $i < 13; $i++) {
+            $calendar1 = $action->get_calendar($dates['year_now'], $i, $err_get);
+            $calendar2 = $action->get_calendar($dates['year_ago'], $i, $err_get);
+            $calendar3 = $action->get_calendar($dates['year_add'], $i, $err_get);
+            $calendar = array_merge($calendar, $calendar1, $calendar2, $calendar3);
+        }
+
+        // 以下、エラーデータにて、出勤必須の日があればデータを格納しておく
+        foreach ($err_get as $key1 => $value) {
+            $flag_check = 0;
+            foreach ($calendar as $key2 => $calendarvaluevalue) {
+                if ($flag_check == 0) {
+                    if (isset($calendarvaluevalue['flag_date']) && isset($calendarvaluevalue['warn']) && $calendarvaluevalue['warn'] != "" && ($value['date_id'] == $calendarvaluevalue['flag_date'])) {
+                        $err_get[$key1]['warn'] = "出勤必須";
+                        $flag_check = 1;
+                    } else {
+                        $err_get[$key1]['warn'] = "";
+                    }
+                }
+            }
+        }
+
         //日付などを取得
         $action = new Calendar;
         $options = $action->get_times(); // 時間帯の配列取得
         $options_rest = $action->get_times_rest(); // 時間帯の配列取得
         
+        $reason = array(
+            '' => '-----',
+            'staff' => 'スタッフ',
+            'company' => '会社',
+        );
+
+        $approval = array(
+            '' => '-----',
+            'OK' => '会社承認済',
+        );
+        
+        $this->view->assign("approval", $approval);
+        $this->view->assign("reason", $reason);
         $this->view->assign("loginUser_auth", $loginUser_auth);
         $this->view->assign("options", $options);
         $this->view->assign("options_rest", $options_rest);
         $this->view->assign("err_get", $err_get); 
         $this->view->assign("dates", $dates); 
-        $this->view->assign("user_name", $_SESSION["user"]);
+        $this->view->assign("user_name", $_SESSION["user_at"]);
         $this->view->display("err/index.tpl");
-    }
-    
-    public function err_updateAction() // エラーデータの更新
-    {
-        // ユーザー確認
-        $action = new Authority();
-        $login_check = $action->login_check();
-        $loginUser_auth = $login_check['auth'];
-        
-        // 持っている権限で開けるページなのか確認
-        $A = master;
-        $action = new Authority();
-        $confirm = $action->auth_ch($A, $loginUser_auth);
-        
-        $user_date_id = $_POST['user_date_id'];
-        $start = (FLOAT)$_POST['start'];
-        $finish = (FLOAT)$_POST['finish'];
-        $rest = (FLOAT)$_POST['rest'];
-        $kei = (FLOAT)($finish - $start - $rest);
-        $edit_date = date("Y/m/d H:i:s");
-
-        $err = "";
-        if($start == 0 && $finish or $rest > 0 || $start > 0 and $start == $finish || $start > $finish || $start == 0 && $finish != 0 || $start == 0 && $finish == 0 && $rest != 0 || $finish - $start - $rest <= 0){
-            $err = "不整合登録";
-        }else{
-            if($start != 0 && $finish - $start >= 6 && $rest != 1) {
-                $err = "休憩1ｈ必須";
-            }
-        }
-
-        $action = new Management();
-        $data = $action->err_up($user_date_id, $start, $finish, $rest, $kei, $edit_date, $err);
-
-        $action = new ManagementController();
-        $transfer  = $action->errorAction();
     }
  
     public function mailAction() // メールページへ
     {
-        $action = new ManagementController();
-        $transfer  = $action->indexAction();
+        // 現在は利用していない為、indexへ飛ばす
+        //$action = new ManagementController();
+        //$transfer  = $action->indexAction();
         
-        /*
-         * 
         // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
@@ -354,19 +391,17 @@ class ManagementController
         $this->view->assign("loginUser_auth", $loginUser_auth);
         $this->view->assign("message", $message);
         $this->view->assign("dates", $dates); 
-        $this->view->assign("user_name", $_SESSION["user"]);
+        $this->view->assign("user_name", $_SESSION["user_at"]);
         $this->view->display("managements/mail.tpl");
-         * 
-         */
+
     }
     
     public function mail_sendAction() // メール送信
     {
-        $action = new ManagementController();
-        $transfer  = $action->indexAction();
+        // 現在は利用していない為、indexへ飛ばす
+        //$action = new ManagementController();
+        //$transfer  = $action->indexAction();
         
-        /*
-         * 
         // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
@@ -383,13 +418,13 @@ class ManagementController
         $to = $_POST['to'];
         $title = $_POST['title'];
         $content = $_POST['content'];
-        //$headers = "From: y.yamamoto@eagle-tokyo.co.jp";
+        $headers = "From: y.yamamoto@eagle-tokyo.co.jp";
         
         $message = "";
         if(mb_send_mail($to, $title, $content)){
-            $message = "メールを送信しました";
+            $message = $to . " 宛にメールを送信しました";
         } else {
-            $message = "メールの送信に失敗しました";
+            $message = $to . " 宛へのメールの送信に失敗しました";
         }
         
         // 取得する年月を取得
@@ -399,10 +434,9 @@ class ManagementController
         $this->view->assign("loginUser_auth", $loginUser_auth);
         $this->view->assign("message", $message);
         $this->view->assign("dates", $dates); 
-        $this->view->assign("user_name", $_SESSION["user"]);
+        $this->view->assign("user_name", $_SESSION["user_at"]);
         $this->view->display("managements/mail.tpl");
-         * 
-         */
+
     }
     
     public function informAction() // コメントの記入 postページTOPに表示
@@ -433,8 +467,92 @@ class ManagementController
             $update = $action->inform_up($comment, $created_at);
         }
         
-        $action = new ManagementController();
-        $transfer  = $action->indexAction();
+        $uri = $_SERVER['HTTP_REFERER'];
+        header("Location: ".$uri);
+    }
+
+    public function mail_auto_sendAction() // メール送信 ※ユーザー管理ページの確定ボタンを押下したら自動で飛ぶ
+    {
+        // ユーザー確認
+        $action = new Authority();
+        $login_check = $action->login_check();
+        $loginUser_auth = $login_check['auth'];
+    
+        // 持っている権限で開けるページなのか確認
+        $A = admin;
+        $action = new Authority();
+        $confirm = $action->auth_ch($A, $loginUser_auth);
+        
+        // 送信相手の情報とシフトを取得する
+         
+        // ユーザーname / id / mail
+        $name = $_POST['username'];
+        $getid = $_POST['target_user_id'];
+        $getmail = $_POST['mail'];
+        
+        // year month取得
+        $get_year = $_POST['year'];
+        $get_month = $_POST['month'];
+        
+        // getユーザーの処理
+        // getユーザーのpostデータを取得(月単位)
+        $yearMonth = $get_year . "/" . $get_month;
+        $action = new Post();
+        $row = $action->get_post($yearMonth, $getid);
+        
+        $mail_sentence = "";
+        foreach ($row as $key => $value) {
+                    
+            // 本文作成
+            $mail_sentence .= "出勤日 " . $value['date_id'] . "(" . $value['week'] . ")"
+                            . " 出:" . $value['start']
+                            . " /退:" . $value['finish']
+                            . " /休:" . $value['rest']
+                            . " /計" . $value['kei']
+                            . "\n"
+                    ;
+            
+        }
+
+        mb_language("Japanese");
+        mb_internal_encoding("UTF-8");
+        
+        $to = $getmail; // 送信元
+        $subject  = "【" . $name . "様】" . $get_year . "年" . $get_month . "月のシフトが確定しました"; // 題名
+        $message  = $mail_sentence; // 本文
+        $headers = "From: " . sender_mail;
+        $headers .= "\n";
+        $headers .= "Bcc: " . bcc_mail;
+        
+        $result = "";
+        if(mb_send_mail($to, $subject, $message, $headers )){
+            $result = "メールを送信しました";
+        } else {
+            $result = "メールの送信に失敗しました";
+        }
+        
+        // メール送信履歴を残す
+        $user_date_id = $name . "_" . date("Y/n/j");
+        $user_id = $getid;
+        $date_id = date("Y/n/j");
+        $create_date = date("Y/m/d H:i:s");
+        $past_start = "-";
+        $past_finish = "-";
+        $past_rest = "-";
+        $past_kei = "-";
+        $editor = "id:" . $_SESSION["user_id_at"] . "_" . $_SESSION["user_at"];
+        $flag = "メール送信";
+        $reason = "mail";
+        $past_note = $result;
+        $past_approval = "-";
+        
+        // 履歴
+        $action = new Reshift;
+        $history = $action->store_reshift($user_date_id, $user_id, $date_id, $create_date, $past_start, $past_finish, $past_rest, $past_kei, $editor, $flag, $reason, $past_note, $past_approval);
+        
+        $uri = $_SERVER['HTTP_REFERER'];
+        header("Location: ".$uri);
+
     }
     
 }

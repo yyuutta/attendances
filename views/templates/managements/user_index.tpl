@@ -12,7 +12,7 @@
     </div>
     <div class="media-body">
         <div class="row">
-            <div class="col-md-7 col-md-offset-2">
+            <div class="col-md-9 col-md-offset-2">
                 <div class="text-header">
                     <h2>ID: {$user['id']} / {$tag}{$user['username']|escape}さん
                     &emsp;&emsp;{if $user['test'] == "notClear"}<font color='red'>試用期間中</font>{/if}</h2>

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2019-09-12 18:00:39
+/* Smarty version 3.1.34-dev-7, created on 2020-08-04 09:49:10
   from 'C:\xampp\htdocs\attendance\views\templates\managements\users.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5d7a0937b234a6_07157372',
+  'unifunc' => 'content_5f28b086299ea0_38932737',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5d7a0937b234a6_07157372 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f28b086299ea0_38932737 (Smarty_Internal_Template $_smarty_tpl) {
 ?><ul class="media-list">
 <?php if ($_smarty_tpl->tpl_vars['loginUser_auth']->value < 1) {?>
     <p class="show-button"><b>■マスター</b></p>
