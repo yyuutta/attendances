@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-08-04 12:39:59
+/* Smarty version 3.1.34-dev-7, created on 2020-08-04 14:38:47
   from 'C:\xampp\htdocs\attendance\views\templates\managements\user_show.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f28d88f911234_09963981',
+  'unifunc' => 'content_5f28f467855179_64441529',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '46bc446cd9ab962ff0bf2cb8ff1ccce78b08b241' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\managements\\user_show.tpl',
-      1 => 1596512076,
+      1 => 1596519521,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../posts/show_ch1.tpl' => 1,
   ),
 ),false)) {
-function content_5f28d88f911234_09963981 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f28f467855179_64441529 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\attendance\\library\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <div class="container-fluid">
@@ -75,9 +75,16 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <?php }?>
             <br><br><br>
             <form name="sendmail" action="" method="post">
-                <input class="btn btn-success btn-block" type="submit" value="【<?php echo $_smarty_tpl->tpl_vars['dates']->value['year'];?>
+                <?php if ($_smarty_tpl->tpl_vars['shift_info']->value == "true") {?>
+                    <input class="btn btn-success btn-block" type="submit" value="【<?php echo $_smarty_tpl->tpl_vars['dates']->value['year'];?>
 年<?php echo $_smarty_tpl->tpl_vars['dates']->value['month'];?>
-月分シフトの確 定】を実行する">
+月分シフト】を確 定する">
+                <?php } else { ?>
+                    <p>【<?php echo $_smarty_tpl->tpl_vars['dates']->value['year'];?>
+年<?php echo $_smarty_tpl->tpl_vars['dates']->value['month'];?>
+月分シフト】は確 定されています</p>
+                <?php }?>    
+                
                 <input type="hidden" name="action" value="mail_auto_send">
                 <input type="hidden" name="eventId" value="management">
                 <input type="hidden" name="target_user_id" value="<?php echo $_smarty_tpl->tpl_vars['user']->value['id'];?>

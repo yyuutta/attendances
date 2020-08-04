@@ -25,7 +25,12 @@
             {/if}
             <br><br><br>
             <form name="sendmail" action="" method="post">
-                <input class="btn btn-success btn-block" type="submit" value="【{$dates['year']}年{$dates['month']}月分シフトの確 定】を実行する">
+                {if $shift_info == "true"}
+                    <input class="btn btn-success btn-block" type="submit" value="【{$dates['year']}年{$dates['month']}月分シフト】を確 定する">
+                {else}
+                    <p>【{$dates['year']}年{$dates['month']}月分シフト】は確 定されています</p>
+                {/if}    
+                
                 <input type="hidden" name="action" value="mail_auto_send">
                 <input type="hidden" name="eventId" value="management">
                 <input type="hidden" name="target_user_id" value="{$user['id']}">

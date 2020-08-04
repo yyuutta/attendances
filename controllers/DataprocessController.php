@@ -9,6 +9,8 @@ require_once(dirname(__FILE__) . "/../models/Authority.php");
 require_once(dirname(__FILE__) . "/../models/Dataprocess.php");
 require_once(dirname(__FILE__) . "/../models/Reshift.php");
 
+require_once(dirname(__FILE__) . "/../controllers/ManagementController.php");
+
 require_once(dirname(__FILE__) . "/../configs/define.php");
 require_once(dirname(__FILE__) . "/../library/smarty/libs/Smarty.class.php");
 
@@ -30,6 +32,11 @@ class DataprocessController
     
     public function indexAction() // ダウンロード
     {
+        // 現在は利用していない為、indexへ飛ばす
+        $action = new ManagementController();
+        $transfer  = $action->indexAction();
+        return; // ここで処理終了
+        
         // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();

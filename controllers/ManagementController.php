@@ -160,7 +160,17 @@ class ManagementController
         // getユーザーの履歴データを取得(対象月のみ)
         $action = new Reshift;
         $history = $action->get_reshift($yearMonth, $getid);
+        // シフト確定ボタンの表示、非表示
+        $shift_info = "true";
+        if ($history > 0) {
+            foreach ($history as $key => $value) {
+                if (isset($value['flag']) && $value['flag'] == "メール送信" && $loginUser_auth > 0) {
+                    $shift_info = false;
+                }
+            }
+        }
         
+        $this->view->assign("shift_info", $shift_info);
         $this->view->assign("approval", $approval);
         $this->view->assign("history", $history);
         $this->view->assign("loginUser_auth", $loginUser_auth);
@@ -369,8 +379,9 @@ class ManagementController
     public function mailAction() // メールページへ
     {
         // 現在は利用していない為、indexへ飛ばす
-        //$action = new ManagementController();
-        //$transfer  = $action->indexAction();
+        $action = new ManagementController();
+        $transfer  = $action->indexAction();
+        return; // ここで処理終了
         
         // ユーザー確認
         $action = new Authority();
@@ -399,8 +410,9 @@ class ManagementController
     public function mail_sendAction() // メール送信
     {
         // 現在は利用していない為、indexへ飛ばす
-        //$action = new ManagementController();
-        //$transfer  = $action->indexAction();
+        $action = new ManagementController();
+        $transfer  = $action->indexAction();
+        return; // ここで処理終了
         
         // ユーザー確認
         $action = new Authority();
@@ -477,7 +489,7 @@ class ManagementController
         $action = new Authority();
         $login_check = $action->login_check();
         $loginUser_auth = $login_check['auth'];
-    
+        
         // 持っている権限で開けるページなのか確認
         $A = admin;
         $action = new Authority();
@@ -530,25 +542,25 @@ class ManagementController
         } else {
             $result = "メールの送信に失敗しました";
         }
-        
-        // メール送信履歴を残す
-        $user_date_id = $name . "_" . date("Y/n/j");
-        $user_id = $getid;
-        $date_id = date("Y/n/j");
-        $create_date = date("Y/m/d H:i:s");
-        $past_start = "-";
-        $past_finish = "-";
-        $past_rest = "-";
-        $past_kei = "-";
-        $editor = "id:" . $_SESSION["user_id_at"] . "_" . $_SESSION["user_at"];
-        $flag = "メール送信";
-        $reason = "mail";
-        $past_note = $result;
-        $past_approval = "-";
-        
+
+        // 履歴
+        $move_history['user_date_id'] = $$name . "_" . date("Y/n/j");
+        $move_history['user_id'] = $getid;
+        $move_history['date_id'] = date("Y/n/j");
+        $move_history['past_start'] = "-";
+        $move_history['past_finish'] = "-";
+        $move_history['past_rest'] = "-";
+        $move_history['past_kei'] = "-";
+        $move_history['past_note'] = $result;
+        $move_history['flag'] = "メール送信";
+        $move_history['reason'] = "mail";
+        $move_history['editor'] = "id:" . $_SESSION["user_id_at"] . "_" . $_SESSION["user_at"];
+        $move_history['create_date'] = date("Y/m/d H:i:s");
+        $move_history['past_approval'] = "-";
+
         // 履歴
         $action = new Reshift;
-        $history = $action->store_reshift($user_date_id, $user_id, $date_id, $create_date, $past_start, $past_finish, $past_rest, $past_kei, $editor, $flag, $reason, $past_note, $past_approval);
+        $history = $action->store_reshift($move_history);
         
         $uri = $_SERVER['HTTP_REFERER'];
         header("Location: ".$uri);
