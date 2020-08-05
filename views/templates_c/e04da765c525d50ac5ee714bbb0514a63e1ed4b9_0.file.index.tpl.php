@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-08-03 17:39:31
+/* Smarty version 3.1.34-dev-7, created on 2020-08-05 14:01:24
   from 'C:\xampp\htdocs\attendance\views\templates\err\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f27cd43e2bb81_76253441',
+  'unifunc' => 'content_5f2a3d241d6e89_54207024',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e04da765c525d50ac5ee714bbb0514a63e1ed4b9' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\err\\index.tpl',
-      1 => 1596095301,
+      1 => 1596603682,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./only_view.tpl' => 1,
   ),
 ),false)) {
-function content_5f27cd43e2bb81_76253441 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f2a3d241d6e89_54207024 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 <?php $_smarty_tpl->_subTemplateRender("file:../layouts/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -48,7 +48,7 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
                     <th>計</th>
                     <th>エラー</th>
                     <th>備考</th>
-                    <th>【必須】都合</th>
+                    <th>都合</th>
                     <th>会社承認</th>
                     <th>変更</th>
                 </tr>

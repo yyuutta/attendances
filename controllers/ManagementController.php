@@ -322,6 +322,26 @@ class ManagementController
         $action = new Management();
         $err_get = $action->error_get();
         
+        // エラーデータのシフト確定がされている年月は更新ボタンを表示しない
+        foreach ($err_get as $key => $value) {
+            // 確認に必要なデータを格納
+            $getid = $value['user_id'];
+            // スラッシュ区切りでデータを分けて年と月だけ利用
+            list($year, $month, $day) = explode('/', $value['date_id']);
+            $date_id = $year . "/" . $month;
+            
+            // 確定されているか確認
+            $action = new Confirm;
+            $confirm = $action->get_confirm($date_id, $getid);
+
+            // 確定ボタンが押下済みであればon
+            if ($confirm > 0) {
+                $err_get[$key]['confirm'] = "on";
+            } else {
+                $err_get[$key]['confirm'] = "off";
+            }
+        }
+        
         // 取得する年月を取得
         $action = new Calendar();
         $dates = $action->get_dates();
@@ -358,7 +378,6 @@ class ManagementController
         $options_rest = $action->get_times_rest(); // 時間帯の配列取得
         
         $reason = array(
-            '' => '-----',
             'staff' => 'スタッフ',
             'company' => '会社',
         );
@@ -569,7 +588,7 @@ class ManagementController
         $move_confirm['create_date'] = date("Y/m/d H:i:s");
 
         $action = new Confirm;
-        $history = $action->store_confirm($move_confirm);
+        $confirm = $action->store_confirm($move_confirm);
 
         
         $uri = $_SERVER['HTTP_REFERER'];

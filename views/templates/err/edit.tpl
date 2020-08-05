@@ -43,7 +43,13 @@
                     {html_options options=$approval selected=$value['approval']}
                 </select>
             </td></div>
-            <td><input type="submit" class="btn btn-primary btn-block" value="更 新"></td>
+            <td>
+            {if $value['confirm'] == "off"}
+                <input type="submit" class="btn btn-primary btn-block" value="更 新">
+            {else}
+                <p>シフト確定済</p>
+            {/if}
+            </td>
             <input type="hidden" name="user_id" value="{$value['id']}">
             <input type="hidden" name="date_id" value="{$value['date_id']}">
             <input type="hidden" name="user_date_id" value="{$value['user_date_id']}">

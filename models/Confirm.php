@@ -12,14 +12,18 @@ class Confirm {
     
     function get_confirm($yearMonth, $getid) {  
 
+        //受け取った値をここで格納
+        $user_id = $getid;
+        $date_id = $yearMonth;
+        
         try {
             $this->pdo->beginTransaction();
             
             //ユーザ名が一致するレコードを探す
             $sql = "SELECT * FROM confirms WHERE `user_id` = :user_id AND `date_id` = :date_id";
             $stmh = $this->pdo->prepare($sql);
-            $stmh->bindParam(':user_id',$getid,PDO::PARAM_INT);
-            $stmh->bindParam(':date_id',$yearMonth,PDO::PARAM_STR);
+            $stmh->bindParam(':user_id',$user_id,PDO::PARAM_INT);
+            $stmh->bindParam(':date_id',$date_id,PDO::PARAM_STR);
             $stmh->execute();
             $count = $stmh->rowCount();
                 if ($count > 0) {
