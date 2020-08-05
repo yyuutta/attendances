@@ -10,6 +10,7 @@ require_once(dirname(__FILE__) . "/../models/Holiday.php");
 require_once(dirname(__FILE__) . "/../models/Authority.php");
 require_once(dirname(__FILE__) . "/../models/Dataprocess.php");
 require_once(dirname(__FILE__) . "/../models/Reshift.php");
+require_once(dirname(__FILE__) . "/../models/Confirm.php");
 
 require_once(dirname(__FILE__) . "/../configs/define.php");
 require_once(dirname(__FILE__) . "/../library/smarty/libs/Smarty.class.php");
@@ -79,17 +80,17 @@ class PostController
                 if($start == 0 && $finish or $rest > 0 || $start > 0 and $start == $finish || $start > $finish || $start == 0 && $finish != 0 || $start == 0 && $finish == 0 && $rest != 0 || $finish - $start - $rest <= 0){
                     $err = "不整合登録";
                 }elseif($start != 0 && $finish - $start >= 6 && $rest != 1) {
-                        $err = "休憩1ｈ必須";
+                        $err = "休憩1h必須";
                 } elseif($start != 0 && $kei < 4) { // 1日4時間勤務必須
                         $err = "4h以上必須";
-                } elseif ($warn != "") {
+                } elseif ($warn != "" && $kei <= 0) {
                         $err = $warn;
                 }
                 
                 $action = new Post;
                 $data = $action->store($user_date_id, $user_id, $date_id, $start, $finish, $rest, $kei, $note, $edit_date, $create_date, $err, $approval, $week);
 
-            } elseif (($now_start != 0 || $now_finish != 0 || $now_rest != 0) and ($start == 0 || $finish == 0 || $rest == 0)) {
+            } elseif (($now_start != 0 || $now_finish != 0 || $now_rest != 0) and ($start == 0 && $finish == 0 && $rest == 0)) {
 
                 // 現在登録しているデータが存在し、かつ変更希望データがなければDBデータを削除
                 $action = new Post;
@@ -201,9 +202,9 @@ class PostController
             
             // 前回と同じデータの場合はスルー　※未登録変更予定データ有と現在登録されているデータが異なっていたら処理を進める
             } elseif ($start != $now_start || $finish != $now_finish || $rest != $now_rest || $kei != $now_kei || $note != $now_note) {
-                
+
                 // 現在登録しているデータが存在し、かつ変更希望データが0、かつ出勤必須日なく、会社承認がなければDBデータを削除
-                if (($exist != "") && ($start == 0 || $finish == 0 || $rest == 0) && $warn == "" && $approval == "" && $now_approval == "") {
+                if (($exist != "") && ($start == 0 && $finish == 0 && $rest == 0) && $warn == "" && $approval == "" && $now_approval == "") {
 
                     $action = new Post;
                     $delete = $action->delete($user_date_id);
@@ -218,10 +219,10 @@ class PostController
                     if($start == 0 && $finish or $rest > 0 || $start > 0 and $start == $finish || $start > $finish || $start == 0 && $finish != 0 || $start == 0 && $finish == 0 && $rest != 0 || $finish - $start - $rest <= 0){
                             $err = "不整合登録";
                     }elseif($start != 0 && $finish - $start >= 6 && $rest != 1) {
-                            $err = "休憩1ｈ必須";
+                            $err = "休憩1h必須";
                     } elseif($start != 0 && $kei < 4) { // 1日4時間勤務必須
                             $err = "4h以上必須";
-                    } elseif ($warn != "") {
+                    } elseif ($warn != "" && $kei <= 0) {
                             $err = $warn;
                     }
                     

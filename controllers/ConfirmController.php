@@ -1,5 +1,7 @@
 <?php
 
+require_once(dirname(__FILE__) . "/../controllers/ConnectController.php");
+
 require_once(dirname(__FILE__) . "/../models/Connect.php");
 require_once(dirname(__FILE__) . "/../models/Calendar.php");
 require_once(dirname(__FILE__) . "/../models/Post.php");
@@ -10,17 +12,15 @@ require_once(dirname(__FILE__) . "/../models/Dataprocess.php");
 require_once(dirname(__FILE__) . "/../models/Reshift.php");
 require_once(dirname(__FILE__) . "/../models/Confirm.php");
 
-require_once(dirname(__FILE__) . "/../controllers/ManagementController.php");
-
 require_once(dirname(__FILE__) . "/../configs/define.php");
 require_once(dirname(__FILE__) . "/../library/smarty/libs/Smarty.class.php");
 
-class DataprocessController
+class ConfirmController
 {
     private $view;
     private $status;
     private $user_name;
-
+    
     public function __construct()
     {
         // Smartyのインスタンスを生成
@@ -31,26 +31,27 @@ class DataprocessController
         $this->view->compile_dir = dirname(__FILE__) . "/../views/templates_c";
     }
     
-    public function indexAction() // ダウンロード
+    public function deleteAction() // confirmデータを削除
     {
-        // 現在は利用していない為、indexへ飛ばす
-        $action = new ManagementController();
-        $transfer  = $action->indexAction();
-        return; // ここで処理終了
-        
         // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
         $loginUser_auth = $login_check['auth'];
-
+        
         // 持っている権限で開けるページなのか確認
         $A = master;
         $action = new Authority();
         $confirm = $action->auth_ch($A, $loginUser_auth);
-        
-        // 全データを取得
-        $action = new Dataprocess();
-        $csv = $action->userdata_download();
-    }
 
+        // 取得データを格納
+        $move_delete['user_id'] = $_POST['target_user_id'];;
+        $move_delete['date_id'] = $_POST['year'] . "/" . $_POST['month'];
+        
+        // 実行
+        $action = new Confirm();
+        $delete = $action->delete_confirm($move_delete);
+        
+        $uri = $_SERVER['HTTP_REFERER'];
+        header("Location: ".$uri);
+    }
 }

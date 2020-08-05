@@ -21,7 +21,7 @@ define("app","attendance"); // アプリ名
 
 define("secret","eagle012"); // ユーザー登録時のaccessCode
 
-define("lastday","31"); // ユーザーがシフト入力できる期間の最終日 Calendar.php
+define("lastday","20"); // ユーザーがシフト入力できる期間の最終日 Calendar.php
 
 // 管理権限 ManagementController.php
 define("master","0");

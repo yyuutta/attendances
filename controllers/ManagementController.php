@@ -8,6 +8,7 @@ require_once(dirname(__FILE__) . "/../models/Holiday.php");
 require_once(dirname(__FILE__) . "/../models/Authority.php");
 require_once(dirname(__FILE__) . "/../models/Dataprocess.php");
 require_once(dirname(__FILE__) . "/../models/Reshift.php");
+require_once(dirname(__FILE__) . "/../models/Confirm.php");
 
 require_once(dirname(__FILE__) . "/../configs/define.php");
 require_once(dirname(__FILE__) . "/../library/smarty/libs/Smarty.class.php");
@@ -160,14 +161,16 @@ class ManagementController
         // getユーザーの履歴データを取得(対象月のみ)
         $action = new Reshift;
         $history = $action->get_reshift($yearMonth, $getid);
+        
         // シフト確定ボタンの表示、非表示
-        $shift_info = "true";
-        if ($history > 0) {
-            foreach ($history as $key => $value) {
-                if (isset($value['flag']) && $value['flag'] == "メール送信" && $loginUser_auth > 0) {
-                    $shift_info = false;
-                }
-            }
+        // confirmsに対象データがあれば非表示とする
+        $action = new Confirm;
+        $confirm = $action->get_confirm($yearMonth, $getid);
+        
+        if ($confirm > 0) {
+            $shift_info = "false"; // 非表示
+        } else {
+            $shift_info = "true"; // 表示
         }
         
         $this->view->assign("shift_info", $shift_info);
@@ -495,8 +498,6 @@ class ManagementController
         $action = new Authority();
         $confirm = $action->auth_ch($A, $loginUser_auth);
         
-        // 送信相手の情報とシフトを取得する
-         
         // ユーザーname / id / mail
         $name = $_POST['username'];
         $getid = $_POST['target_user_id'];
@@ -507,7 +508,7 @@ class ManagementController
         $get_month = $_POST['month'];
         
         // getユーザーの処理
-        // getユーザーのpostデータを取得(月単位)
+        // getユーザーのpostデータ(シフト)を取得(月単位)
         $yearMonth = $get_year . "/" . $get_month;
         $action = new Post();
         $row = $action->get_post($yearMonth, $getid);
@@ -544,9 +545,9 @@ class ManagementController
         }
 
         // 履歴
-        $move_history['user_date_id'] = $$name . "_" . date("Y/n/j");
+        $move_history['user_date_id'] = $name . "_" . date("Y/n/j");
         $move_history['user_id'] = $getid;
-        $move_history['date_id'] = date("Y/n/j");
+        $move_history['date_id'] = $get_year . "/" . $get_month;
         $move_history['past_start'] = "-";
         $move_history['past_finish'] = "-";
         $move_history['past_rest'] = "-";
@@ -558,9 +559,18 @@ class ManagementController
         $move_history['create_date'] = date("Y/m/d H:i:s");
         $move_history['past_approval'] = "-";
 
-        // 履歴
         $action = new Reshift;
         $history = $action->store_reshift($move_history);
+        
+        // 確定ボタンを押下したらフラグを立てる
+        $move_confirm['user_id'] = $getid;
+        $move_confirm['date_id'] = $get_year . "/" . $get_month;
+        $move_confirm['editor'] = "id:" . $_SESSION["user_id_at"] . "_" . $_SESSION["user_at"];
+        $move_confirm['create_date'] = date("Y/m/d H:i:s");
+
+        $action = new Confirm;
+        $history = $action->store_confirm($move_confirm);
+
         
         $uri = $_SERVER['HTTP_REFERER'];
         header("Location: ".$uri);
