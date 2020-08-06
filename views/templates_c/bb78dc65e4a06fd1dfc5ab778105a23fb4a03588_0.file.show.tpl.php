@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-08-04 09:49:07
+/* Smarty version 3.1.34-dev-7, created on 2020-08-06 13:51:07
   from 'C:\xampp\htdocs\attendance\views\templates\posts\show.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f28b0837908b8_35265538',
+  'unifunc' => 'content_5f2b8c3b54a678_03635975',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'bb78dc65e4a06fd1dfc5ab778105a23fb4a03588' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\posts\\show.tpl',
-      1 => 1596094010,
+      1 => 1596689465,
       2 => 'file',
     ),
   ),
@@ -21,11 +21,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/head.tpl' => 1,
     'file:../layouts/header.tpl' => 1,
     'file:./show_header.tpl' => 1,
+    'file:./show_comment.tpl' => 1,
     'file:./show_ch1.tpl' => 1,
     'file:./show_ch0.tpl' => 1,
   ),
 ),false)) {
-function content_5f28b0837908b8_35265538 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f2b8c3b54a678_03635975 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 <?php $_smarty_tpl->_subTemplateRender("file:../layouts/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -58,6 +59,11 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
             <h2>閲覧のみとなります</h2>
         <?php }?>
         <h4>入力可能範囲は翌月のみ<br>期間は当月1日～20日中</h4>
+        <br>
+        <div class="text-left">
+            <?php $_smarty_tpl->_subTemplateRender("file:./show_comment.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+        </div>
         <br>
         <div class="container-fluid">
         <div class="row">

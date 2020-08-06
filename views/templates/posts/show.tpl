@@ -27,6 +27,10 @@
         {/if}
         <h4>入力可能範囲は翌月のみ<br>期間は当月1日～20日中</h4>
         <br>
+        <div class="text-left">
+            {include file="./show_comment.tpl"}
+        </div>
+        <br>
         <div class="container-fluid">
         <div class="row">
             <table class="table table-bordered">
