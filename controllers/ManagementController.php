@@ -532,11 +532,11 @@ class ManagementController
         $action = new Post();
         $row = $action->get_post($yearMonth, $getid);
         
-        $mail_sentence = "";
+        $mail_sentence = "出勤日\n";
         foreach ($row as $key => $value) {
                     
             // 本文作成
-            $mail_sentence .= "出勤日 " . $value['date_id'] . "(" . $value['week'] . ")"
+            $mail_sentence .= $value['date_id'] . "(" . $value['week'] . ")"
                             . " 出:" . $value['start']
                             . " /退:" . $value['finish']
                             . " /休:" . $value['rest']

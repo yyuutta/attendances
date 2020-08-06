@@ -94,13 +94,13 @@ class Connect {
                 if ($count > 0){
                        throw new PDOException("そのユーザーネームは既に使用されています。");
                 }
-                if ($user > 40){
+                if ($user > 20){
                        throw new PDOException("ユーザーネームは20文字以内でお願いします。");
                 }
                 if (!preg_match('/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/', $mail)){
                        throw new PDOException("mailの入力は必須です。");
                 }
-                if ($pass < 6 || $pass > 40) {
+                if ($pass < 6 || $pass > 20) {
                        throw new PDOException("パスワードは6～20桁で入力してください。");    
                 }
                 if (!preg_match("/^[0-9]+$/", $password)) {
