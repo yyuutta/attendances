@@ -81,8 +81,12 @@ class ConnectController
 
         // ユーザー作成処理
         $action = new Connect();
-        if($_POST['accessCode'] == secret) {
-            $this->status = $action->user_create($_POST);
+        if($_POST['accessCode'] == secret_master) { // マスターとして登録
+            $number = master;
+            $this->status = $action->user_create($_POST, $number);
+        } elseif($_POST['accessCode'] == secret_staff) { // スタッフとして登録
+            $number = staff;
+            $this->status = $action->user_create($_POST, $number);
         } else {
             $this->status = "accessCodeが違います";
         }

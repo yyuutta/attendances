@@ -83,7 +83,7 @@ class Connect {
         return $this->status;
     }
     
-    function user_create($POST) { 
+    function user_create($POST, $number) { 
         //受け取った値をここで格納
         $username = $_POST['username'];
         $password = str_replace(array(" ", "　"), "", $_POST['password']);
@@ -123,7 +123,7 @@ class Connect {
             $user = strlen($username);
             $pass = strlen($password);
             $mail = $mail;
-            $auth = 0;
+            $auth = $number;
             $memo = "";
             $indate = "";
             $outdate = "";

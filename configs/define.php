@@ -19,7 +19,9 @@ define("db_type","mysql"); //データベースの種類
 
 define("app","attendance"); // アプリ名
 
-define("secret","eagle012"); // ユーザー登録時のaccessCode
+// ユーザー登録時のaccessCode
+define("secret_master","eagle012"); // マスターとして登録される
+define("secret_staff","eagle"); // スタッフとして登録される
 
 define("lastday","20"); // ユーザーがシフト入力できる期間の最終日 Calendar.php
 
