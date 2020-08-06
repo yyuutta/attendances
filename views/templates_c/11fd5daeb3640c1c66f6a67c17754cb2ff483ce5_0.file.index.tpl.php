@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-08-04 09:49:10
+/* Smarty version 3.1.34-dev-7, created on 2020-08-06 13:34:57
   from 'C:\xampp\htdocs\attendance\views\templates\managements\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f28b08626d863_54540191',
+  'unifunc' => 'content_5f2b88716c56c3_23562611',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '11fd5daeb3640c1c66f6a67c17754cb2ff483ce5' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\managements\\index.tpl',
-      1 => 1575426700,
+      1 => 1596688490,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./years.tpl' => 1,
   ),
 ),false)) {
-function content_5f28b08626d863_54540191 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f2b88716c56c3_23562611 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 <?php $_smarty_tpl->_subTemplateRender("file:../layouts/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -37,7 +37,7 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
 <div class="row">
 <li class="media">
     <div class="col-md-3">
-        <?php if ($_smarty_tpl->tpl_vars['loginUser_auth']->value < 1) {?>
+        <?php if ($_smarty_tpl->tpl_vars['loginUser_auth']->value < 2) {?>
             <?php $_smarty_tpl->_subTemplateRender("file:./comment.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
             <BR><BR>

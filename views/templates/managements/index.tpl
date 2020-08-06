@@ -8,7 +8,7 @@
 <div class="row">
 <li class="media">
     <div class="col-md-3">
-        {if $loginUser_auth < 1}
+        {if $loginUser_auth < 2}
             {include file="./comment.tpl"}
             <BR><BR>
         {/if}
