@@ -44,7 +44,7 @@
                 </select>
             </td></div>
             <td>
-            {if $value['confirm'] == "off"}
+            {if $value['confirm'] == "off" || $loginUser_auth == 0}
                 <input type="submit" class="btn btn-primary btn-block" value="更 新">
             {else}
                 <p>シフト確定済</p>

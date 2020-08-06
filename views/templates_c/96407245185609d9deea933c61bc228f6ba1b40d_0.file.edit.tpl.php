@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-08-05 16:31:50
+/* Smarty version 3.1.34-dev-7, created on 2020-08-06 10:58:51
   from 'C:\xampp\htdocs\attendance\views\templates\err\edit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f2a6066399fa0_35666177',
+  'unifunc' => 'content_5f2b63dbd49181_04307714',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '96407245185609d9deea933c61bc228f6ba1b40d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\err\\edit.tpl',
-      1 => 1596612708,
+      1 => 1596679129,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f2a6066399fa0_35666177 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f2b63dbd49181_04307714 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\attendance\\library\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <form name="errdata" action="" method="post">
@@ -82,7 +82,7 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\attendanc
                 </select>
             </td></div>
             <td>
-            <?php if ($_smarty_tpl->tpl_vars['value']->value['confirm'] == "off") {?>
+            <?php if ($_smarty_tpl->tpl_vars['value']->value['confirm'] == "off" || $_smarty_tpl->tpl_vars['loginUser_auth']->value == 0) {?>
                 <input type="submit" class="btn btn-primary btn-block" value="更 新">
             <?php } else { ?>
                 <p>シフト確定済</p>

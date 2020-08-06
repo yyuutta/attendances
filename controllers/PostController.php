@@ -84,7 +84,7 @@ class PostController
                 } elseif($start != 0 && $kei < 4) { // 1日4時間勤務必須
                         $err = "4h以上必須";
                 } elseif ($warn != "" && $kei <= 0) {
-                        $err = $warn;
+                        $err = $warn; // 出勤必須
                 }
                 
                 $action = new Post;
@@ -223,7 +223,7 @@ class PostController
                     } elseif($start != 0 && $kei < 4) { // 1日4時間勤務必須
                             $err = "4h以上必須";
                     } elseif ($warn != "" && $kei <= 0) {
-                            $err = $warn;
+                            $err = $warn; // 出勤必須
                     }
                     
                     // データ登録

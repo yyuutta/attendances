@@ -452,7 +452,7 @@ class ManagementController
         $to = $_POST['to'];
         $title = $_POST['title'];
         $content = $_POST['content'];
-        $headers = "From: y.yamamoto@eagle-tokyo.co.jp";
+        $headers = "From: " . sender_mail;
         
         $message = "";
         if(mb_send_mail($to, $title, $content)){

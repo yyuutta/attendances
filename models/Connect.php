@@ -97,7 +97,7 @@ class Connect {
                 if ($user > 40){
                        throw new PDOException("ユーザーネームは20文字以内でお願いします。");
                 }
-                if (!preg_match('/^([a-zA-Z0-9_\.\-]+)\@([a-zA-Z0-9\-]+)\.([a-zA-Z0-9]{2,4})$/', $mail)){
+                if (!preg_match('/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/', $mail)){
                        throw new PDOException("mailの入力は必須です。");
                 }
                 if ($pass < 6 || $pass > 40) {
