@@ -52,6 +52,13 @@ class ManagementController
         // 取得する年月を取得
         $action = new Calendar();
         $dates = $action->get_dates();
+        
+        // 本年度を基準に前後1年が対象データになっているか確認
+        if ($_GET['year'] != $dates['year_now'] && $_GET['year'] != $dates['year_ago'] && $_GET['year'] != $dates['year_add']) {
+            header("Location: index.php");
+            return; // ここで処理終了
+        }
+        
         //日付を取得
         $action = new Management;
         for($i=1; $i<=12; $i++) {
@@ -73,6 +80,7 @@ class ManagementController
         $this->view->assign("user_name", $_SESSION["user_at"]);
         $this->view->display("managements/index.tpl");
     }
+    
     public function userAction() // ユーザー管理ページへ
     {
         // ユーザー確認
@@ -97,7 +105,13 @@ class ManagementController
         $getid = $_GET['id'];
         $action = new Management;
         $user = $action->onlyuser_get($getid);
-        
+
+        // データが存在しなければtopページへ
+        if ($user < 1) {
+            header("Location: index.php");
+            return; // ここで処理終了
+        }
+
         // マスター以外がマスターデータを見るのはNG→侵入しようとしたらログアウト
         if ($user['auth'] == master && $loginUser_auth > master) {
                 unset($_SESSION["app_at"]);
@@ -249,14 +263,27 @@ class ManagementController
         // 取得する年月を取得
         $action = new Calendar();
         $dates = $action->get_dates();
-        // 全ユーザー取得
-        $action = new Management;
-        $users = $action->user_get();
         
+        // GETデータ
         $year = $_GET['year'];
         $month = $_GET['month'];
         $day = $_GET['day'];
         $date_data = $year . "/" . $month . "/" . $day;
+        
+        // 本年度を基準に前後1年が対象データになっているか確認
+        if ($year != $dates['year_now'] && $year != $dates['year_ago'] && $year != $dates['year_add']) {
+            header("Location: index.php");
+            return; // ここで処理終了
+        }
+        // 存在する年月日になっているか確認
+        if (checkdate($month, $day, $year) === false) {
+            header("Location: index.php");
+            return; // ここで処理終了
+        }
+        
+        // 全ユーザー取得
+        $action = new Management;
+        $users = $action->user_get();
         
         // 日付別で対象者を取得
         $action = new Management;
@@ -266,7 +293,7 @@ class ManagementController
         $weeks = array( "日", "月", "火", "水", "木", "金", "土" );
         $timestamp = date_create($year . "-" . $month . "-" . $day);
         $week = $weeks[date_format($timestamp, "w")];
-        
+
         $this->view->assign("loginUser_auth", $loginUser_auth);
         $this->view->assign("count", $count);
         $this->view->assign("year", $year); 
