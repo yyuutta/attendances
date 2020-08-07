@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-08-05 13:58:48
+/* Smarty version 3.1.34-dev-7, created on 2020-08-07 10:05:36
   from 'C:\xampp\htdocs\attendance\views\templates\managements\user_show.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f2a3c88ab3b03_31300036',
+  'unifunc' => 'content_5f2ca8e0f07661_76917453',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '46bc446cd9ab962ff0bf2cb8ff1ccce78b08b241' => 
     array (
       0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\managements\\user_show.tpl',
-      1 => 1596603526,
+      1 => 1596762335,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../posts/show_ch0.tpl' => 1,
   ),
 ),false)) {
-function content_5f2a3c88ab3b03_31300036 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f2ca8e0f07661_76917453 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\attendance\\library\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <div class="container-fluid">
