@@ -25,8 +25,8 @@ class Connect {
         }
         
         $dsn = "$db_type:dbname=$db_name; host=$db_host; port=5432";
-        
         //$dsn = "$db_type:host=$db_host;dbname=$db_name;charset=utf8";
+        
         try {
             $this->pdo = new PDO($dsn,$db_user,$db_pass);
             $this->pdo->query("set names utf8");  // この記述が必要
@@ -56,7 +56,7 @@ class Connect {
             $this->pdo->beginTransaction();
 
             //ユーザ名が一致するレコードを探す
-            $sql = "SELECT * FROM users WHERE `username` = :username";
+            $sql = "SELECT * FROM users WHERE username = :username";
             $stmh = $this->pdo->prepare($sql);
             $stmh->bindParam(':username',$username,PDO::PARAM_STR);
             $stmh->execute();
@@ -115,7 +115,7 @@ class Connect {
 
             //ユーザーネームが重複しているか、パスが4ケタ以上か確認用データ取得
             //プレースホルダでSQL作成
-            $sql = "SELECT COUNT(*) FROM users WHERE `username` = :username";
+            $sql = "SELECT COUNT(*) FROM users WHERE username = :username";
             $stmh = $this->pdo->prepare($sql);
             $stmh->bindParam(':username',$username,PDO::PARAM_STR);
             $stmh->execute();
