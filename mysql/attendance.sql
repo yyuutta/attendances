@@ -1,115 +1,115 @@
 
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET SQL_MODE = NO_AUTO_VALUE_ON_ZERO;
+SET time_zone = '+00:00';
 
 
 
 --
--- Database: `attendance`
+-- Database: attendance
 --
 
 -- --------------------------------------------------------
 
 --
--- テーブルの構造 `confirms`
+-- テーブルの構造 confirms
 --
 
-CREATE TABLE `confirms` (
-  `id` int(11) NOT NULL,
-  `date_id` varchar(255) NOT NULL,
-  `user_id` int(30) NOT NULL,
-  `editor` varchar(30) NOT NULL,
-  `create_date` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE confirms (
+  id int NOT NULL,
+  date_id varchar NOT NULL,
+  user_id int NOT NULL,
+  editor varchar NOT NULL,
+  create_date timestamp DEFAULT NULL
+) ;
 
 
 -- --------------------------------------------------------
 
 --
--- テーブルの構造 `informs`
+-- テーブルの構造 informs
 --
 
-CREATE TABLE `informs` (
-  `id` int(11) NOT NULL,
-  `comment` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `posts`
---
-
-CREATE TABLE `posts` (
-  `id` int(11) NOT NULL,
-  `user_date_id` char(30) CHARACTER SET utf8 DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
-  `date_id` char(30) CHARACTER SET utf8 NOT NULL,
-  `week` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `start` float NOT NULL,
-  `finish` float NOT NULL,
-  `rest` float NOT NULL,
-  `kei` float NOT NULL,
-  `note` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `err` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `edit_date` datetime DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `approval` varchar(30) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE informs (
+  id int NOT NULL,
+  comment varchar DEFAULT NULL,
+  created_at timestamp NOT NULL default current_timestamp
+  ) ;
 
 
 
 -- --------------------------------------------------------
 
 --
--- テーブルの構造 `reshifts`
+-- テーブルの構造 posts
 --
 
-CREATE TABLE `reshifts` (
-  `id` int(11) NOT NULL,
-  `user_date_id` varchar(30) NOT NULL,
-  `user_id` int(30) NOT NULL,
-  `date_id` varchar(255) NOT NULL,
-  `week` varchar(30) NOT NULL,
-  `start` varchar(255) NOT NULL,
-  `finish` varchar(255) NOT NULL,
-  `rest` varchar(255) NOT NULL,
-  `kei` varchar(255) NOT NULL,
-  `note` varchar(255) NOT NULL,
-  `flag` varchar(255) NOT NULL,
-  `reason` varchar(255) NOT NULL,
-  `editor` varchar(30) NOT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `approval` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE posts (
+  id int NOT NULL,
+  user_date_id int DEFAULT NULL,
+  user_id int NOT NULL,
+  date_id char NOT NULL,
+  week varchar  NOT NULL,
+  start float NOT NULL,
+  finish float NOT NULL,
+  rest float NOT NULL,
+  kei float NOT NULL,
+  note varchar  DEFAULT NULL,
+  err varchar DEFAULT NULL,
+  edit_date timestamp DEFAULT NULL,
+  create_date timestamp DEFAULT NULL,
+  approval varchar NOT NULL
+) ;
 
 
 
 -- --------------------------------------------------------
 
 --
--- テーブルの構造 `users`
+-- テーブルの構造 reshifts
 --
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `username` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `department` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `mail` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `auth` int(11) NOT NULL,
-  `memo` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `indate` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `outdate` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `test` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `leaving` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `edit_date` datetime DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE reshifts (
+  id int NOT NULL,
+  user_date_id varchar NOT NULL,
+  user_id int NOT NULL,
+  date_id varchar NOT NULL,
+  week varchar NOT NULL,
+  start varchar NOT NULL,
+  finish varchar NOT NULL,
+  rest varchar NOT NULL,
+  kei varchar NOT NULL,
+  note varchar NOT NULL,
+  flag varchar NOT NULL,
+  reason varchar NOT NULL,
+  editor varchar NOT NULL,
+  create_date timestamp DEFAULT NULL,
+  approval varchar NOT NULL
+) ;
+
+
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 users
+--
+
+CREATE TABLE users (
+  id int NOT NULL,
+  username varchar NOT NULL,
+  password varchar NOT NULL,
+  department varchar NOT NULL,
+  mail varchar NOT NULL,
+  auth int NOT NULL,
+  memo varchar DEFAULT NULL,
+  indate varchar DEFAULT NULL,
+  outdate varchar DEFAULT NULL,
+  test varchar NOT NULL,
+  leaving varchar DEFAULT NULL,
+  edit_date timestamp DEFAULT NULL,
+  create_date timestamp DEFAULT NULL
+) ;
 
 
 
@@ -118,65 +118,62 @@ CREATE TABLE `users` (
 --
 
 --
--- Indexes for table `confirms`
+-- Indexes for table confirms
 --
-ALTER TABLE `confirms`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE confirms
+  ADD PRIMARY KEY (id);
 
 --
--- Indexes for table `informs`
+-- Indexes for table informs
 --
-ALTER TABLE `informs`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE informs
+  ADD PRIMARY KEY (id);
 
 --
--- Indexes for table `posts`
+-- Indexes for table posts
 --
-ALTER TABLE `posts`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `user_date_id` (`user_date_id`);
+ALTER TABLE posts
+  ADD PRIMARY KEY (id);
 
 --
--- Indexes for table `reshifts`
+-- Indexes for table reshifts
 --
-ALTER TABLE `reshifts`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE reshifts
+  ADD PRIMARY KEY (id);
 
 --
--- Indexes for table `users`
+-- Indexes for table users
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE users
+  ADD PRIMARY KEY (id);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `confirms`
+-- AUTO_INCREMENT for table confirms
 --
-ALTER TABLE `confirms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+ALTER TABLE confirms
+  MODIFY id int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
--- AUTO_INCREMENT for table `informs`
+-- AUTO_INCREMENT for table informs
 --
-ALTER TABLE `informs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+ALTER TABLE informs
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT for table `posts`
+-- AUTO_INCREMENT for table posts
 --
-ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1097;
+ALTER TABLE posts
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1097;
 --
--- AUTO_INCREMENT for table `reshifts`
+-- AUTO_INCREMENT for table reshifts
 --
-ALTER TABLE `reshifts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
+ALTER TABLE reshifts
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT for table users
 --
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+ALTER TABLE users
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
