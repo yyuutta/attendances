@@ -20,7 +20,7 @@ class Reshift {
             $this->pdo->beginTransaction();
 
             //ユーザ名が一致するレコードを探す
-            $sql = "SELECT * FROM reshifts WHERE `user_id` = :user_id AND `date_id` like :date_id";
+            $sql = "SELECT * FROM reshifts WHERE user_id = :user_id AND date_id like :date_id";
             $stmh = $this->pdo->prepare($sql);
             $stmh->bindParam(':user_id',$user_id,PDO::PARAM_INT);
             $stmh->bindParam(':date_id',$date_id,PDO::PARAM_STR);

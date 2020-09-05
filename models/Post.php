@@ -23,7 +23,7 @@ class Post {
             
             //ユーザ名が一致するレコードを探す
             //$sql = "SELECT * FROM users WHERE `username` = :username";
-            $sql = "SELECT * FROM posts WHERE `user_id` = :user_id AND `date_id` like :date_id";
+            $sql = "SELECT * FROM posts WHERE user_id = :user_id AND date_id like :date_id";
             $stmh = $this->pdo->prepare($sql);
             $stmh->bindParam(':user_id',$user_id,PDO::PARAM_INT);
             $stmh->bindParam(':date_id',$date_id,PDO::PARAM_STR);
@@ -57,20 +57,20 @@ class Post {
                     VALUES 
                         (:id, :user_date_id, :user_id, :date_id, :start ,:finish, :rest, :kei, :note, :err, :edit_date, :create_date, :approval, :week)
                     ON DUPLICATE KEY UPDATE
-                        `id` = `id`,
-                        `user_date_id` = VALUES(`user_date_id`),
-                        `user_id` = VALUES(`user_id`),
-                        `date_id` = VALUES(`date_id`),
-                        `start` = VALUES(`start`),
-                        `finish` = VALUES(`finish`),
-                        `rest` = VALUES(`rest`),
-                        `kei` = VALUES(`kei`),
-                        `note` = VALUES(`note`),
-                        `err` = VALUES(`err`),
-                        `edit_date` = VALUES(`edit_date`),
-                        `create_date` = `create_date`,
-                        `approval` = VALUES(`approval`),
-                        `week` = VALUES(`week`)
+                        id = `id`,
+                        user_date_id = VALUES(`user_date_id`),
+                        user_id = VALUES(`user_id`),
+                        date_id = VALUES(`date_id`),
+                        start = VALUES(`start`),
+                        finish = VALUES(`finish`),
+                        rest = VALUES(`rest`),
+                        kei = VALUES(`kei`),
+                        note = VALUES(`note`),
+                        err = VALUES(`err`),
+                        edit_date = VALUES(`edit_date`),
+                        create_date = `create_date`,
+                        approval = VALUES(`approval`),
+                        week = VALUES(`week`)
                     ";
 
             $stmh = $this->pdo->prepare($sql);
@@ -109,7 +109,7 @@ class Post {
                 $sql =  "DELETE FROM
                             posts
                         WHERE
-                            `user_date_id` = :user_date_id
+                            user_date_id = :user_date_id
                         ";
                 
                 $stmh = $this->pdo->prepare($sql);
@@ -135,9 +135,9 @@ class Post {
                 $sql =  "UPDATE
                             posts
                         SET
-                            `approval` = :approval
+                            approval = :approval
                         WHERE
-                            `user_date_id` = :user_date_id
+                            user_date_id = :user_date_id
                         ";
                 
                 $stmh = $this->pdo->prepare($sql);

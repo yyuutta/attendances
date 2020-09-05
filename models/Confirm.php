@@ -20,7 +20,7 @@ class Confirm {
             $this->pdo->beginTransaction();
             
             //ユーザ名が一致するレコードを探す
-            $sql = "SELECT * FROM confirms WHERE `user_id` = :user_id AND `date_id` = :date_id";
+            $sql = "SELECT * FROM confirms WHERE user_id = :user_id AND date_id = :date_id";
             $stmh = $this->pdo->prepare($sql);
             $stmh->bindParam(':user_id',$user_id,PDO::PARAM_INT);
             $stmh->bindParam(':date_id',$date_id,PDO::PARAM_STR);
@@ -84,7 +84,7 @@ class Confirm {
                 $sql =  "DELETE FROM
                             confirms
                         WHERE
-                            `user_id` = :user_id and `date_id` = :date_id
+                            user_id = :user_id and date_id = :date_id
                         ";
                 
                 $stmh = $this->pdo->prepare($sql);
