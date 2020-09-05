@@ -24,7 +24,7 @@ class Connect {
                 $db_type = db_type_local; //データベースの種類
         }
         
-        $dsn = "$db_type:host=$db_host;dbname=$db_name;charset=utf8";
+        $dsn = "$db_type:host=$db_host;dbname=$db_name;";
         try {
             $this->pdo = new PDO($dsn,$db_user,$db_pass);
             $this->pdo->query("set names utf8");  // この記述が必要
@@ -34,7 +34,7 @@ class Connect {
         } catch (PDOException $Exception) {
             die('エラー:' . $Exception->getMessage());
         }
-        echo $this->pdo;
+        //return $this->pdo;
     }
     
     
