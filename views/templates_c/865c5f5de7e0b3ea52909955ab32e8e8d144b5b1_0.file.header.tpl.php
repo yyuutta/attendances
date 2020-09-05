@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-08-19 12:52:39
+/* Smarty version 3.1.34-dev-7, created on 2020-09-05 10:46:17
   from '/Applications/MAMP/htdocs/attendance/views/templates/layouts/header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f3d2097386d46_91961265',
+  'unifunc' => 'content_5f536c79719123_97070006',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '865c5f5de7e0b3ea52909955ab32e8e8d144b5b1' => 
     array (
       0 => '/Applications/MAMP/htdocs/attendance/views/templates/layouts/header.tpl',
-      1 => 1569314736,
+      1 => 1599302640,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f3d2097386d46_91961265 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f536c79719123_97070006 (Smarty_Internal_Template $_smarty_tpl) {
 ?><header>
     <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
@@ -31,7 +31,7 @@ function content_5f3d2097386d46_91961265 (Smarty_Internal_Template $_smarty_tpl)
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Eagle-<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['user_name']->value, ENT_QUOTES, 'UTF-8', true);?>
+                <a class="navbar-brand" href="index.php"><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['user_name']->value, ENT_QUOTES, 'UTF-8', true);?>
 </a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
