@@ -24,7 +24,7 @@ class Connect {
                 $db_type = db_type_local; //データベースの種類
         }
         
-        $dsn = '$db_type:dbname=$db_name host=$db_host port=5432';
+        $dsn = "$db_type:dbname=$db_name; host=$db_host; port=5432";
         
         //$dsn = "$db_type:host=$db_host;dbname=$db_name;charset=utf8";
         try {
