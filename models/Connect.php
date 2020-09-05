@@ -24,7 +24,9 @@ class Connect {
                 $db_type = db_type_local; //データベースの種類
         }
         
-        $dsn = "$db_type:host=$db_host;dbname=$db_name;";
+        $dsn = '$db_type:host=$db_host;dbname=$db_name;';
+        
+        //$dsn = "$db_type:host=$db_host;dbname=$db_name;charset=utf8";
         try {
             $this->pdo = new PDO($dsn,$db_user,$db_pass);
             $this->pdo->query("set names utf8");  // この記述が必要
