@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-08-05 19:14:41
-  from 'C:\xampp\htdocs\attendance\views\templates\connect\register.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-08-14 13:31:47
+  from '/Applications/MAMP/htdocs/attendance/views/templates/connect/register.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f2a86913a32e9_65665023',
+  'unifunc' => 'content_5f3692437e2323_61576005',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'ad8179ba78fe1996643dff5046173c2f045e5dba' => 
+    '47cd18374cfd6557181b015812983c911283807f' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\connect\\register.tpl',
-      1 => 1575352736,
+      0 => '/Applications/MAMP/htdocs/attendance/views/templates/connect/register.tpl',
+      1 => 1575352738,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/head.tpl' => 1,
   ),
 ),false)) {
-function content_5f2a86913a32e9_65665023 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f3692437e2323_61576005 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>  
 <html lang="ja">
     <head>

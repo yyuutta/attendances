@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-08-04 09:49:10
-  from 'C:\xampp\htdocs\attendance\views\templates\managements\comment.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-08-19 12:52:41
+  from '/Applications/MAMP/htdocs/attendance/views/templates/managements/comment.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f28b08627d4f4_64771099',
+  'unifunc' => 'content_5f3d20999cd688_98528349',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'd3b004c297e95c3d3fb1b90df13856cd63c58a28' => 
+    '922d43517fff7ab2d4ff4ce7e0c3892f6a7a77ce' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\managements\\comment.tpl',
-      1 => 1575426817,
+      0 => '/Applications/MAMP/htdocs/attendance/views/templates/managements/comment.tpl',
+      1 => 1575426818,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f28b08627d4f4_64771099 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f3d20999cd688_98528349 (Smarty_Internal_Template $_smarty_tpl) {
 ?><form name="comment" action="" method="post">
     <div class="form-group">
         <label for="name">Comment</label>

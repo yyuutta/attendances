@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-08-04 09:49:07
-  from 'C:\xampp\htdocs\attendance\views\templates\posts\show_header.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-08-19 12:52:39
+  from '/Applications/MAMP/htdocs/attendance/views/templates/posts/show_header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f28b0837aa1d8_83601162',
+  'unifunc' => 'content_5f3d20973c38b9_70214174',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '3e0bbfb63ae932ba0cab327219a7dc74f3221377' => 
+    'a04078a992c156adfd90c92d9e98fccb7918a5b4' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\posts\\show_header.tpl',
-      1 => 1568273476,
+      0 => '/Applications/MAMP/htdocs/attendance/views/templates/posts/show_header.tpl',
+      1 => 1568273478,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f28b0837aa1d8_83601162 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f3d20973c38b9_70214174 (Smarty_Internal_Template $_smarty_tpl) {
 ?><select name="year" style="width:100px; height:30px;">
     <option <?php if ($_smarty_tpl->tpl_vars['dates']->value['year'] == $_smarty_tpl->tpl_vars['dates']->value['year_ago']) {?>selected<?php }?> value="<?php echo $_smarty_tpl->tpl_vars['dates']->value['year_ago'];?>
 "><?php echo $_smarty_tpl->tpl_vars['dates']->value['year_ago'];?>

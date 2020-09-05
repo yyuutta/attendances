@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-08-06 10:58:51
-  from 'C:\xampp\htdocs\attendance\views\templates\err\edit.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-08-19 12:52:44
+  from '/Applications/MAMP/htdocs/attendance/views/templates/err/edit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f2b63dbd49181_04307714',
+  'unifunc' => 'content_5f3d209c650324_13590565',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '96407245185609d9deea933c61bc228f6ba1b40d' => 
+    'f5c3ffe0ca9b3af073ac000597a1f4db4a62bb6e' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\err\\edit.tpl',
-      1 => 1596679129,
+      0 => '/Applications/MAMP/htdocs/attendance/views/templates/err/edit.tpl',
+      1 => 1596679130,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f2b63dbd49181_04307714 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\attendance\\library\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
+function content_5f3d209c650324_13590565 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Applications/MAMP/htdocs/attendance/library/smarty/libs/plugins/function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <form name="errdata" action="" method="post">
         <tr>

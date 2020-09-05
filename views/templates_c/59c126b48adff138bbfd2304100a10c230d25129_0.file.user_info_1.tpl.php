@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-08-04 12:10:58
-  from 'C:\xampp\htdocs\attendance\views\templates\managements\user_info_1.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-08-19 12:52:50
+  from '/Applications/MAMP/htdocs/attendance/views/templates/managements/user_info_1.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f28d1c2532b63_08836500',
+  'unifunc' => 'content_5f3d20a20c3982_79214116',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '54c0c1f7f5bced4d25254c0a009eea6fc32c5e00' => 
+    '59c126b48adff138bbfd2304100a10c230d25129' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\attendance\\views\\templates\\managements\\user_info_1.tpl',
-      1 => 1595229502,
+      0 => '/Applications/MAMP/htdocs/attendance/views/templates/managements/user_info_1.tpl',
+      1 => 1595229504,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f28d1c2532b63_08836500 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\attendance\\library\\smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
+function content_5f3d20a20c3982_79214116 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Applications/MAMP/htdocs/attendance/library/smarty/libs/plugins/function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <form name="user" action="" method="post">
     <div class="form-group">

@@ -123,7 +123,7 @@ class ManagementController
                     exit;
                 }
         }
-
+        
         $auth = array(
             master => 'マスター',
             admin => '管理者',

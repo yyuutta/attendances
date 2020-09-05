@@ -64,8 +64,7 @@ class Holiday {
         );
         
         $this->holiday = $this->holiday_1 + $this->holiday_2;
-         
-        // return $holiday;
+
     }
     
 }

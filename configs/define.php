@@ -1,12 +1,11 @@
 <?php
 
-// 祝日などはHoliday.phpに記載有→更新する事
-
+// 祝日などは models/Holiday.phpに記載有→更新する事
 
 //DB_connect
 //local
-define("db_user_local","yamamoto"); //ユーザー名
-define("db_pass_local","eagle"); //パスワード
+define("db_user_local","root"); //ユーザー名
+define("db_pass_local","root"); //パスワード
 define("db_host_local","localhost"); //ホスト名
 define("db_name_local","attendance"); //データベース名
 define("db_type_local","mysql"); //データベースの種類
@@ -32,5 +31,5 @@ define("staff","2");
 define("out","3");
 
 // メール用 ManagementController.php
-define("sender_mail","y.yamamoto@eagle-tokyo.co.jp"); // 送信アドレス
-define("bcc_mail","k.ooba@eagle-tokyo.co.jp"); // bcc送信アドレス
+define("sender_mail",""); // 送信アドレス
+define("bcc_mail",""); // bcc送信アドレス

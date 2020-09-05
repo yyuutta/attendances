@@ -178,6 +178,7 @@ class PostController
             $move_history['user_date_id'] = $user_date_id;
             $move_history['user_id'] = $user_id;
             $move_history['date_id'] = $date_id;
+            $move_history['week'] = $week;
             $move_history['past_start'] = $now_start . " → " . $start;
             $move_history['past_finish'] = $now_finish . " → " . $finish;
             $move_history['past_rest'] = $now_rest . " → " . $rest;
