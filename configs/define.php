@@ -7,7 +7,7 @@
 define("db_user","bceirclonjchwy"); //ユーザー名
 define("db_pass","cce917c7f5840406d896f69affc0e58f6982291e6d0cbd0d827764ddad8dd8b6"); //パスワード
 define("db_host","ec2-107-20-15-85.compute-1.amazonaws.com"); //ホスト名
-define("db_name","postgresql-pointy-15512"); //データベース名
+define("db_name","deu1irosrb5v1"); //データベース名
 define("db_type","postgresql"); //データベースの種類
 
 define("app","attendance"); // アプリ名

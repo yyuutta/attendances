@@ -34,7 +34,7 @@ class Connect {
         } catch (PDOException $Exception) {
             die('エラー:' . $Exception->getMessage());
         }
-        //return $this->pdo;
+        echo $this->pdo;
     }
     
     
