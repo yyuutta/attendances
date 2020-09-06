@@ -57,7 +57,7 @@ class Reshift {
             $stmh = $this->pdo->prepare($sql);
             $stmh->bindParam(':id',$id_auto,PDO::PARAM_STR);
             $stmh->bindParam(':user_date_id',$move_history['user_date_id'],PDO::PARAM_STR);
-            $stmh->bindParam(':user_id',$move_history['user_id'],PDO::PARAM_STR);
+            $stmh->bindParam(':user_id',$move_history['user_id'],PDO::PARAM_INT);
             $stmh->bindParam(':date_id',$move_history['date_id'],PDO::PARAM_STR);
             $stmh->bindParam(':week',$move_history['week'],PDO::PARAM_STR);
             $stmh->bindParam(':start',$move_history['past_start'],PDO::PARAM_INT);
