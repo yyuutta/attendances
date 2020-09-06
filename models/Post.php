@@ -44,6 +44,27 @@ class Post {
     
     function store($user_date_id, $user_id, $date_id, $start, $finish, $rest, $kei, $note, $edit_date, $create_date, $err, $approval, $week) {
         
+        var_dump($user_date_id);
+        var_dump($user_id);
+        var_dump($date_id);
+        var_dump($start);
+        var_dump($finish);
+        var_dump($rest);
+        var_dump($kei);
+        var_dump($note);
+        var_dump($edit_date);
+        var_dump($create_date);
+        var_dump($err);
+        var_dump($approval);
+        var_dump($week);        
+        
+        exit;
+        
+        
+        
+        
+        
+        
         $this->status = "";
         
         //$id_auto = 0;
