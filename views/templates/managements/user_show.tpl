@@ -26,7 +26,7 @@
         <br><br><br>
         <form name="sendmail" action="" method="post">
             {if $shift_info == "true"}
-                <input class="btn btn-success btn-block" type="submit" name="mailsend_button" value="【{$dates['year']}年{$dates['month']}月分シフト】を確 定する">
+                <input class="btn btn-success btn-block" type="submit" name="mailsend_button" value="【{$dates['year']}年{$dates['month']}月分シフト】を確 定する(未使用)">
             {else}
                 <h3><font color="#228b22">【{$dates['year']}年{$dates['month']}月分シフト】は確 定されています</font></h3>
                 {if $loginUser_auth == 0}
