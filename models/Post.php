@@ -53,9 +53,9 @@ class Post {
            
             // データが存在すれば更新、なければ作成
             $sql =  "INSERT INTO 
-                        posts (user_date_id, user_id, date_id, start, finish, rest, kei, note, err, edit_date, create_date, approval, week)
+                        posts (user_date_id, user_id, date_id, week, start, finish, rest, kei, note, err, edit_date, create_date, approval)
                     VALUES 
-                        (:user_date_id, :user_id, :date_id, :start ,:finish, :rest, :kei, :note, :err, :edit_date, :create_date, :approval, :week)
+                        (:user_date_id, :user_id, :date_id, :week, :start ,:finish, :rest, :kei, :note, :err, :edit_date, :create_date, :approval)
                     ON CONFLICT ON CONSTRAINT id_ukey
                     DO UPDATE SET
                         user_date_id = VALUES(`user_date_id`),
@@ -78,6 +78,7 @@ class Post {
             $stmh->bindParam(':user_date_id',$user_date_id,PDO::PARAM_STR);
             $stmh->bindParam(':user_id',$user_id,PDO::PARAM_STR);
             $stmh->bindParam(':date_id',$date_id,PDO::PARAM_STR);
+            $stmh->bindParam(':week',$week,PDO::PARAM_STR);
             $stmh->bindParam(':start',$start,PDO::PARAM_INT);
             $stmh->bindParam(':finish',$finish,PDO::PARAM_INT);
             $stmh->bindParam(':rest',$rest,PDO::PARAM_INT);
@@ -87,7 +88,6 @@ class Post {
             $stmh->bindParam(':edit_date',$edit_date,PDO::PARAM_STR);
             $stmh->bindParam(':create_date',$create_date,PDO::PARAM_STR);
             $stmh->bindParam(':approval',$approval,PDO::PARAM_STR);
-            $stmh->bindParam(':week',$week,PDO::PARAM_STR);
             $stmh->execute();
             $this->pdo->commit();
         } catch (PDOException $Exception) {
