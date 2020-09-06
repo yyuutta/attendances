@@ -46,7 +46,7 @@ class Post {
         
         $this->status = "";
         
-        $id_auto = 0;
+        //$id_auto = 0;
         
         try {
             $this->pdo->beginTransaction();
@@ -72,7 +72,8 @@ class Post {
                         approval = VALUES(`approval`),
                         week = VALUES(`week`)
                     ";
-
+echo $sql;
+exit;
             $stmh = $this->pdo->prepare($sql);
             //$stmh->bindParam(':id',$id_auto,PDO::PARAM_STR);
             $stmh->bindParam(':user_date_id',$user_date_id,PDO::PARAM_STR);
