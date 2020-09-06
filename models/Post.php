@@ -53,12 +53,11 @@ class Post {
            
             // データが存在すれば更新、なければ作成
             $sql =  "INSERT INTO 
-                        posts (id, user_date_id, user_id, date_id, start, finish, rest, kei, note, err, edit_date, create_date, approval, week)
+                        posts (user_date_id, user_id, date_id, start, finish, rest, kei, note, err, edit_date, create_date, approval, week)
                     VALUES 
-                        (:id, :user_date_id, :user_id, :date_id, :start ,:finish, :rest, :kei, :note, :err, :edit_date, :create_date, :approval, :week)
+                        (:user_date_id, :user_id, :date_id, :start ,:finish, :rest, :kei, :note, :err, :edit_date, :create_date, :approval, :week)
                     ON CONFLICT (user_date_id)
                     DO UPDATE SET
-                        id = id,
                         user_date_id = VALUES(`user_date_id`),
                         user_id = VALUES(`user_id`),
                         date_id = VALUES(`date_id`),
@@ -75,7 +74,7 @@ class Post {
                     ";
 
             $stmh = $this->pdo->prepare($sql);
-            $stmh->bindParam(':id',$id_auto,PDO::PARAM_STR);
+            //$stmh->bindParam(':id',$id_auto,PDO::PARAM_STR);
             $stmh->bindParam(':user_date_id',$user_date_id,PDO::PARAM_STR);
             $stmh->bindParam(':user_id',$user_id,PDO::PARAM_STR);
             $stmh->bindParam(':date_id',$date_id,PDO::PARAM_STR);
