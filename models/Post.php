@@ -56,7 +56,7 @@ class Post {
                         posts (user_date_id, user_id, date_id, start, finish, rest, kei, note, err, edit_date, create_date, approval, week)
                     VALUES 
                         (:user_date_id, :user_id, :date_id, :start ,:finish, :rest, :kei, :note, :err, :edit_date, :create_date, :approval, :week)
-                    ON CONFLICT (user_date_id)
+                    ON CONFLICT ON CONSTRAINT id_ukey
                     DO UPDATE SET
                         user_date_id = VALUES(`user_date_id`),
                         user_id = VALUES(`user_id`),

@@ -46,7 +46,7 @@ CREATE TABLE informs (
 
 CREATE TABLE posts (
   id serial,
-  user_date_id int unique,
+  user_date_id int,
   user_id int NOT NULL,
   date_id char NOT NULL,
   week varchar  NOT NULL,
@@ -58,7 +58,8 @@ CREATE TABLE posts (
   err varchar DEFAULT NULL,
   edit_date timestamp DEFAULT NULL,
   create_date timestamp DEFAULT NULL,
-  approval varchar NOT NULL
+  approval varchar NOT NULL,
+  CONSTRAINT id_ukey UNIQUE(user_date_id)
 ) ;
 
 
