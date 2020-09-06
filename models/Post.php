@@ -46,20 +46,35 @@ class Post {
         
         $this->status = "";
         
-        $id_auto = 0;
+        //$id_auto = 0;
         
         try {
             $this->pdo->beginTransaction();
            
             // データが存在すれば更新、なければ作成
-            $sql =  "INSERT INTO
-                        posts (id, user_date_id, user_id, date_id, week, start, finish, rest, kei, note, err, edit_date, create_date, approval)
-                    VALUES
-                        (:id, :user_date_id, :user_id, :date_id, :week, :start ,:finish, :rest, :kei, :note, :err, :edit_date, :create_date, :approval)
+            $sql =  "INSERT INTO 
+                        posts (user_date_id, user_id, date_id, week, start, finish, rest, kei, note, err, edit_date, create_date, approval)
+                    VALUES 
+                        (:user_date_id, :user_id, :date_id, :week, :start ,:finish, :rest, :kei, :note, :err, :edit_date, :create_date, :approval)
+                    ON CONFLICT ON CONSTRAINT id_ukey
+                    DO UPDATE SET
+                        user_date_id = VALUES(`user_date_id`),
+                        user_id = VALUES(`user_id`),
+                        date_id = VALUES(`date_id`),
+                        start = VALUES(`start`),
+                        finish = VALUES(`finish`),
+                        rest = VALUES(`rest`),
+                        kei = VALUES(`kei`),
+                        note = VALUES(`note`),
+                        err = VALUES(`err`),
+                        edit_date = VALUES(`edit_date`),
+                        create_date = create_date,
+                        approval = VALUES(`approval`),
+                        week = VALUES(`week`)
                     ";
 
             $stmh = $this->pdo->prepare($sql);
-            $stmh->bindParam(':id',$id_auto,PDO::PARAM_STR);
+            //$stmh->bindParam(':id',$id_auto,PDO::PARAM_STR);
             $stmh->bindParam(':user_date_id',$user_date_id,PDO::PARAM_STR);
             $stmh->bindParam(':user_id',$user_id,PDO::PARAM_STR);
             $stmh->bindParam(':date_id',$date_id,PDO::PARAM_STR);

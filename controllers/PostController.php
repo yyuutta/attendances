@@ -50,6 +50,10 @@ class PostController
         $confirm = $action->auth_ch($A, $loginUser_auth);
         
         //データ更新or作成
+        
+        var_dump($_POST);
+        exit;
+        
         for($i = 0; $i < count($_POST['date_name']); $i++){
              
             // 変更希望データ
