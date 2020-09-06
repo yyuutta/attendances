@@ -58,7 +58,7 @@ class Post {
                         (:id, :user_date_id, :user_id, :date_id, :start ,:finish, :rest, :kei, :note, :err, :edit_date, :create_date, :approval, :week)
                     ON CONFLICT ON CONSTRAINT user_date_id
                     DO UPDATE SET
-                        id = `id`,
+                        id = id,
                         user_date_id = VALUES(`user_date_id`),
                         user_id = VALUES(`user_id`),
                         date_id = VALUES(`date_id`),
@@ -69,7 +69,7 @@ class Post {
                         note = VALUES(`note`),
                         err = VALUES(`err`),
                         edit_date = VALUES(`edit_date`),
-                        create_date = `create_date`,
+                        create_date = create_date,
                         approval = VALUES(`approval`),
                         week = VALUES(`week`)
                     ";
