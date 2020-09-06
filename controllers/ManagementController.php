@@ -534,6 +534,11 @@ class ManagementController
 
     public function mail_auto_sendAction() // メール送信 ※ユーザー管理ページの確定ボタンを押下したら自動で飛ぶ
     {
+        // 現在は利用していない為、indexへ飛ばす
+        $action = new ManagementController();
+        $transfer  = $action->indexAction();
+        return; // ここで処理終了
+
         // ユーザー確認
         $action = new Authority();
         $login_check = $action->login_check();
