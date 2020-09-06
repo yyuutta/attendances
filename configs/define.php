@@ -13,8 +13,8 @@ define("db_type","pgsql"); //データベースの種類
 define("app","attendance"); // アプリ名
 
 // ユーザー登録時のaccessCode
-define("secret_master","eagle012"); // マスターとして登録される
-define("secret_staff","eagle"); // スタッフとして登録される
+define("secret_master","master"); // マスターとして登録される
+define("secret_staff","staff"); // スタッフとして登録される
 
 define("lastday","20"); // ユーザーがシフト入力できる期間の最終日 Calendar.php
 
