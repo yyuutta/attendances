@@ -91,7 +91,7 @@ class Post {
             $stmh->execute();
             $this->pdo->commit();
         } catch (PDOException $Exception) {
-            $this->pdo->rollBack();
+            //$this->pdo->rollBack();
             $this->status = "エラー:" . $Exception->getMessage() . "<br>";
         }
         print $this->status;
