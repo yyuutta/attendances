@@ -61,6 +61,7 @@ class Post {
                         user_date_id = VALUES(`user_date_id`),
                         user_id = VALUES(`user_id`),
                         date_id = VALUES(`date_id`),
+                        week = VALUES(`week`),
                         start = VALUES(`start`),
                         finish = VALUES(`finish`),
                         rest = VALUES(`rest`),
@@ -69,8 +70,7 @@ class Post {
                         err = VALUES(`err`),
                         edit_date = VALUES(`edit_date`),
                         create_date = create_date,
-                        approval = VALUES(`approval`),
-                        week = VALUES(`week`)
+                        approval = VALUES(`approval`)
                     ";
 
             $stmh = $this->pdo->prepare($sql);
