@@ -57,20 +57,20 @@ class Post {
                     VALUES 
                         (:id, :user_date_id, :user_id, :date_id, :start ,:finish, :rest, :kei, :note, :err, :edit_date, :create_date, :approval, :week)
                     INSERT ON CONFLICT UPDATE
-                        `id` = `id`,
-                        `user_date_id` = VALUES(`user_date_id`),
-                        `user_id` = VALUES(`user_id`),
-                        `date_id` = VALUES(`date_id`),
-                        `start` = VALUES(`start`),
-                        `finish` = VALUES(`finish`),
-                        `rest` = VALUES(`rest`),
-                        `kei` = VALUES(`kei`),
-                        `note` = VALUES(`note`),
-                        `err` = VALUES(`err`),
-                        `edit_date` = VALUES(`edit_date`),
-                        `create_date` = `create_date`,
-                        `approval` = VALUES(`approval`),
-                        `week` = VALUES(`week`)
+                        id = `id`,
+                        user_date_id = VALUES(`user_date_id`),
+                        user_id = VALUES(`user_id`),
+                        date_id = VALUES(`date_id`),
+                        start = VALUES(`start`),
+                        finish = VALUES(`finish`),
+                        rest = VALUES(`rest`),
+                        kei = VALUES(`kei`),
+                        note = VALUES(`note`),
+                        err = VALUES(`err`),
+                        edit_date = VALUES(`edit_date`),
+                        create_date = `create_date`,
+                        approval = VALUES(`approval`),
+                        week = VALUES(`week`)
                     ";
 
             $stmh = $this->pdo->prepare($sql);
