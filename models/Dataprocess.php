@@ -45,7 +45,7 @@ class Dataprocess {
             $fileNm = $nowdate . ".csv";
             header('Content-Type: text/csv');
             header('Content-Disposition: attachment; filename='.$fileNm);
-            echo mb_convert_encoding($csvstr, "SJIS", "UTF-8"); //Shift-JISに変換したい場合のみ
+            //echo mb_convert_encoding($csvstr, "SJIS", "UTF-8"); //Shift-JISに変換したい場合のみ
             exit();
         } catch (PDOException $Exception) {
             $this->pdo->rollBack();
