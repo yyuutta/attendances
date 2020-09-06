@@ -124,6 +124,7 @@ class Connect {
             //文字数格納
             $user = strlen($username);
             $pass = strlen($password);
+            $department = "";
             $mail = $mail;
             $auth = $number;
             $memo = "";
@@ -145,14 +146,15 @@ class Connect {
             //情報を登録
             //プレースホルダでSQL作成
             $sql = "INSERT INTO
-                        users (username, password, mail, auth, memo, indate, outdate, test, leaving, edit_date, create_date)
+                        users (username, password, department, mail, auth, memo, indate, outdate, test, leaving, edit_date, create_date)
                     VALUES
-                        (:username, :password, :mail, :auth, :memo, :indate, :outdate, :test, :leaving, :edit_date, :create_date)
+                        (:username, :password, :department, :mail, :auth, :memo, :indate, :outdate, :test, :leaving, :edit_date, :create_date)
                     ";
                         
             $stmh = $this->pdo->prepare($sql);
             $stmh->bindParam(':username',$username,PDO::PARAM_STR);
             $stmh->bindParam(':password',$hash,PDO::PARAM_INT);
+            $stmh->bindParam(':department',$department,PDO::PARAM_STR);
             $stmh->bindParam(':mail',$mail,PDO::PARAM_STR);
             $stmh->bindParam(':auth',$auth,PDO::PARAM_INT);
             $stmh->bindParam(':memo',$memo,PDO::PARAM_STR);

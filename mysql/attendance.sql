@@ -16,7 +16,7 @@ SET time_zone = '+00:00';
 --
 
 CREATE TABLE confirms (
-  id int NOT NULL,
+  id serial,
   date_id varchar NOT NULL,
   user_id int NOT NULL,
   editor varchar NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE confirms (
 --
 
 CREATE TABLE informs (
-  id int NOT NULL,
+  id serial,
   comment varchar DEFAULT NULL,
   created_at timestamp NOT NULL default current_timestamp
   ) ;
@@ -45,7 +45,7 @@ CREATE TABLE informs (
 --
 
 CREATE TABLE posts (
-  id int NOT NULL,
+  id serial,
   user_date_id int DEFAULT NULL,
   user_id int NOT NULL,
   date_id char NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE posts (
 --
 
 CREATE TABLE reshifts (
-  id int NOT NULL,
+  id serial,
   user_date_id varchar NOT NULL,
   user_id int NOT NULL,
   date_id varchar NOT NULL,
@@ -96,7 +96,7 @@ CREATE TABLE reshifts (
 --
 
 CREATE TABLE users (
-  id int NOT NULL,
+  id serial,
   username varchar NOT NULL,
   password varchar NOT NULL,
   department varchar NOT NULL,
@@ -146,34 +146,3 @@ ALTER TABLE reshifts
 --
 ALTER TABLE users
   ADD PRIMARY KEY (id);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table confirms
---
-ALTER TABLE confirms
-  MODIFY id int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
---
--- AUTO_INCREMENT for table informs
---
-ALTER TABLE informs
-  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table posts
---
-ALTER TABLE posts
-  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1097;
---
--- AUTO_INCREMENT for table reshifts
---
-ALTER TABLE reshifts
-  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
---
--- AUTO_INCREMENT for table users
---
-ALTER TABLE users
-  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
