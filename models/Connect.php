@@ -141,7 +141,7 @@ class Connect {
             //$hash = password_hash($password, PASSWORD_DEFAULT);
             //$hash = crypt($password, PASSWORD_BCRYPT);
             //$hash = password_hash($password, PASSWORD_BCRYPT);
-            $hash = crypt($password);
+            $hash = crypt($password, "");
             
             //情報を登録
             //プレースホルダでSQL作成
