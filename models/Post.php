@@ -58,19 +58,19 @@ class Post {
                         (:user_date_id, :user_id, :date_id, :week, :start ,:finish, :rest, :kei, :note, :err, :edit_date, :create_date, :approval)
                     ON CONFLICT ON CONSTRAINT id_ukey
                     DO UPDATE SET
-                        user_date_id = VALUES(`user_date_id`),
-                        user_id = VALUES(`user_id`),
-                        date_id = VALUES(`date_id`),
-                        week = VALUES(`week`),
-                        start = VALUES(`start`),
-                        finish = VALUES(`finish`),
-                        rest = VALUES(`rest`),
-                        kei = VALUES(`kei`),
-                        note = VALUES(`note`),
-                        err = VALUES(`err`),
-                        edit_date = VALUES(`edit_date`),
+                        user_date_id = :user_date_id,
+                        user_id = :user_id,
+                        date_id = :date_id,
+                        week = :week,
+                        start = :start,
+                        finish = :finish,
+                        rest = :rest,
+                        kei = :kei,
+                        note = :note,
+                        err = :err,
+                        edit_date = :edit_date,
                         create_date = create_date,
-                        approval = VALUES(`approval`)
+                        approval = :approval
                     ";
 
             $stmh = $this->pdo->prepare($sql);
