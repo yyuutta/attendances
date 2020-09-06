@@ -56,7 +56,8 @@ class Post {
                         posts (id, user_date_id, user_id, date_id, start, finish, rest, kei, note, err, edit_date, create_date, approval, week)
                     VALUES 
                         (:id, :user_date_id, :user_id, :date_id, :start ,:finish, :rest, :kei, :note, :err, :edit_date, :create_date, :approval, :week)
-                    INSERT ON CONFLICT UPDATE
+                    ON CONFLICT ON CONSTRAINT user_date_id
+                    DO UPDATE SET
                         id = `id`,
                         user_date_id = VALUES(`user_date_id`),
                         user_id = VALUES(`user_id`),
