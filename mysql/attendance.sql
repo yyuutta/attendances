@@ -46,9 +46,9 @@ CREATE TABLE informs (
 
 CREATE TABLE posts (
   id serial,
-  user_date_id int,
+  user_date_id varchar NOT NULL,
   user_id int NOT NULL,
-  date_id char NOT NULL,
+  date_id varchar NOT NULL,
   week varchar  NOT NULL,
   start float NOT NULL,
   finish float NOT NULL,
