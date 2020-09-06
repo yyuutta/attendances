@@ -69,7 +69,7 @@ class Post {
                         note = :note,
                         err = :err,
                         edit_date = :edit_date,
-                        create_date = create_date,
+                        create_date = :create_date,
                         approval = :approval
                     ";
 
