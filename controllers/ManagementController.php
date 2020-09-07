@@ -513,9 +513,8 @@ class ManagementController
         $confirm = $action->auth_ch($A, $loginUser_auth);
         
         $comment = $_POST['comment'];
-        // $created_at = date("Y/m/d H:i:s");now()
-        $created_at = now();
-
+        $created_at = date("Y/m/d H:i:s");
+        
         // 既存コメントを格納
         $action = new Management();
         $check = $action->comment_get();
