@@ -76,7 +76,7 @@ class ReshiftController
                     $reshifts_d_user = $action->get_duplicate_user($target_user);
                     
                     // 重複データがあれば格納
-                    if ($reshifts_d_user[0]['count(user_date_id)'] > 1) {
+                    if ($reshifts_d_user[0]['user_date_id'] > 1) {
                         $reshifts[$key]['duplicate'] = "duplicate";
                     }
 
