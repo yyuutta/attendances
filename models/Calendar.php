@@ -92,7 +92,7 @@ class Calendar {
             }
             
             // エラーデータがあるが、会社承認がある場合は、OKと表示
-            if ($calendar[$j]['approval'] == "OK" && $calendar[$j]['err'] != "") {
+            if (isset($calendar[$j]['approval']) && $calendar[$j]['approval'] == "OK" && $calendar[$j]['err'] != "") {
                 $calendar[$j]['err'] = $calendar[$j]['approval'];
                 $calendar[$j]['warn'] = "";
             }

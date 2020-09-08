@@ -26,7 +26,7 @@
                 
                 <BR>   
                 <ul class="media-list">
-                    <li>作成日:{$user['create_date']}</li>
+                    <li>作成日:{$user['created_at']}</li>
                     <li>編集日:{$user['edit_date']}</li>
                     <li>退社日:{$user['leaving']}</li>
                 </ul>

@@ -100,7 +100,7 @@ class Reshift {
                     WHERE
                         reshifts.reason = :company and reshifts.date_id like :date_id
                     ORDER BY
-                        reshifts.user_date_id ASC, users.id ASC, reshifts.create_date ASC
+                        reshifts.user_date_id ASC, users.id ASC, reshifts.created_at ASC
                     ";
                     
             $stmh = $this->pdo->prepare($sql);

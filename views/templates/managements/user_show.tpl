@@ -12,7 +12,7 @@
         <h4>データ変更履歴</h4>
         {if $history > 0}
         {foreach from=$history key=$key item=$value}
-            <p>{$key + 1}) {$value['create_date']} |{$value['flag']} |編集者{$value['editor']}
+            <p>{$key + 1}) {$value['created_at']} |{$value['flag']} |編集者{$value['editor']}
             <br>[日付] {$value['date_id']}
             <br>[出] {$value['start']} [退] {$value['finish']} [休] {$value['rest']} [計] {$value['kei']}
             <br>[都合] {$value['reason']}
