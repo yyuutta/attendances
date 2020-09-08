@@ -53,9 +53,9 @@ class Post {
            
             // データが存在すれば更新、なければ作成
             $sql =  "INSERT INTO
-                        posts (user_date_id, user_id, date_id, week, start, finish, rest, kei, note, err, edit_date, create_date, approval)
+                        posts (user_date_id, user_id, date_id, week, start, finish, rest, kei, note, err, edit_date, created_at, approval)
                     VALUES
-                        (:user_date_id, :user_id, :date_id, :week, :start ,:finish, :rest, :kei, :note, :err, :edit_date, :create_date, :approval)
+                        (:user_date_id, :user_id, :date_id, :week, :start ,:finish, :rest, :kei, :note, :err, :edit_date, :created_at, :approval)
                     ON CONFLICT ON CONSTRAINT id_ukey
                     DO UPDATE SET
                         user_date_id = :user_date_id,
@@ -69,7 +69,7 @@ class Post {
                         note = :note,
                         err = :err,
                         edit_date = :edit_date,
-                        create_date = :create_date,
+                        created_at = :created_at,
                         approval = :approval
                     ";
 
@@ -86,7 +86,7 @@ class Post {
             $stmh->bindParam(':note',$note,PDO::PARAM_STR);
             $stmh->bindParam(':err',$err,PDO::PARAM_STR);
             $stmh->bindParam(':edit_date',$edit_date,PDO::PARAM_STR);
-            $stmh->bindParam(':create_date',$create_date,PDO::PARAM_STR);
+            $stmh->bindParam(':created_at',$create_date,PDO::PARAM_STR);
             $stmh->bindParam(':approval',$approval,PDO::PARAM_STR);
             $stmh->execute();
             $this->pdo->commit();

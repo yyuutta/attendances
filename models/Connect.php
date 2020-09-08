@@ -146,9 +146,9 @@ class Connect {
             //情報を登録
             //プレースホルダでSQL作成
             $sql = "INSERT INTO
-                        users (username, password, department, mail, auth, memo, indate, outdate, test, leaving, edit_date, create_date)
+                        users (username, password, department, mail, auth, memo, indate, outdate, test, leaving, edit_date, created_at)
                     VALUES
-                        (:username, :password, :department, :mail, :auth, :memo, :indate, :outdate, :test, :leaving, :edit_date, :create_date)
+                        (:username, :password, :department, :mail, :auth, :memo, :indate, :outdate, :test, :leaving, :edit_date, :created_at)
                     ";
                         
             $stmh = $this->pdo->prepare($sql);
@@ -163,7 +163,7 @@ class Connect {
             $stmh->bindParam(':test',$test,PDO::PARAM_STR);
             $stmh->bindParam(':leaving',$leaving,PDO::PARAM_STR);
             $stmh->bindParam(':edit_date',$edit_date,PDO::PARAM_STR);
-            $stmh->bindParam(':create_date',$create_date,PDO::PARAM_STR);
+            $stmh->bindParam(':created_at',$create_date,PDO::PARAM_STR);
             $stmh->execute();
             $this->pdo->commit();
             $this->status = "ユーザー【" . $username . "】-" . $stmh->rowCount() . "件登録しました。"; 

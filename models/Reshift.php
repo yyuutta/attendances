@@ -49,9 +49,9 @@ class Reshift {
            
             // 編集データの履歴
             $sql =  "INSERT INTO 
-                        reshifts (user_date_id, week, user_id, date_id, start, finish, rest, kei, note, flag, reason, editor, create_date, approval)
+                        reshifts (user_date_id, week, user_id, date_id, start, finish, rest, kei, note, flag, reason, editor, created_at, approval)
                     VALUES 
-                        (:user_date_id, :week, :user_id, :date_id, :start ,:finish, :rest, :kei, :note, :flag, :reason, :editor, :create_date, :approval)
+                        (:user_date_id, :week, :user_id, :date_id, :start ,:finish, :rest, :kei, :note, :flag, :reason, :editor, :created_at, :approval)
                     ";
 
             $stmh = $this->pdo->prepare($sql);
@@ -67,7 +67,7 @@ class Reshift {
             $stmh->bindParam(':flag',$move_history['flag'],PDO::PARAM_STR);
             $stmh->bindParam(':reason',$move_history['reason'],PDO::PARAM_STR);
             $stmh->bindParam(':editor',$move_history['editor'],PDO::PARAM_STR);
-            $stmh->bindParam(':create_date',$move_history['create_date'],PDO::PARAM_STR);
+            $stmh->bindParam(':created_at',$move_history['create_date'],PDO::PARAM_STR);
             $stmh->bindParam(':approval',$move_history['past_approval'],PDO::PARAM_STR);
             $stmh->execute();
             $this->pdo->commit();

@@ -49,7 +49,7 @@ class Confirm {
            
             // 編集データの履歴
             $sql =  "INSERT INTO 
-                        confirms (id, date_id, user_id, editor, create_date)
+                        confirms (id, date_id, user_id, editor, created_at)
                     VALUES 
                         (:id, :date_id, :user_id, :editor, :create_date)
                     ";
@@ -59,7 +59,7 @@ class Confirm {
             $stmh->bindParam(':date_id',$move_confirm['date_id'],PDO::PARAM_STR);
             $stmh->bindParam(':user_id',$move_confirm['user_id'],PDO::PARAM_STR);
             $stmh->bindParam(':editor',$move_confirm['editor'],PDO::PARAM_STR);
-            $stmh->bindParam(':create_date',$move_confirm['create_date'],PDO::PARAM_STR);
+            $stmh->bindParam(':created_at',$move_confirm['create_date'],PDO::PARAM_STR);
             $stmh->execute();
             $this->pdo->commit();
         } catch (PDOException $Exception) {
