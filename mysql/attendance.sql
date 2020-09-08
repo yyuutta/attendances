@@ -20,7 +20,7 @@ CREATE TABLE confirms (
   date_id varchar NOT NULL,
   user_id int NOT NULL,
   editor varchar NOT NULL,
-  create_date timestamp DEFAULT NULL
+  created_at timestamp NOT NULL default current_timestamp
 ) ;
 
 
@@ -57,7 +57,7 @@ CREATE TABLE posts (
   note varchar  DEFAULT NULL,
   err varchar DEFAULT NULL,
   edit_date timestamp DEFAULT NULL,
-  create_date timestamp DEFAULT NULL,
+  created_at timestamp NOT NULL default current_timestamp,
   approval varchar NOT NULL,
   CONSTRAINT id_ukey UNIQUE(user_date_id)
 ) ;
@@ -84,7 +84,7 @@ CREATE TABLE reshifts (
   flag varchar NOT NULL,
   reason varchar NOT NULL,
   editor varchar NOT NULL,
-  create_date timestamp DEFAULT NULL,
+  created_at timestamp NOT NULL default current_timestamp,
   approval varchar NOT NULL
 ) ;
 
@@ -109,7 +109,7 @@ CREATE TABLE users (
   test varchar NOT NULL,
   leaving varchar DEFAULT NULL,
   edit_date timestamp DEFAULT NULL,
-  create_date timestamp DEFAULT NULL
+  created_at timestamp NOT NULL default current_timestamp
 ) ;
 
 
