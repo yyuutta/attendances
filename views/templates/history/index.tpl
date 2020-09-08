@@ -73,7 +73,7 @@
                                 {$value['editor']|escape}
                             </td></div>
                             <div class="form-group"><td>
-                                {$value['create_date']|escape}
+                                {$value['date_id']|escape}
                             </td></div>
                         </tr>
 
